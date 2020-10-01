@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Main = () => {
+const Main = (props) => {
+  const {title, genre, year} = props;
 
   return (
     <React.Fragment>
@@ -34,10 +36,10 @@ const Main = () => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -304,6 +306,12 @@ const Main = () => {
       </div>
     </React.Fragment>
   );
+};
+
+Main.propTypes = {
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired
 };
 
 export default Main;
