@@ -10,6 +10,9 @@ Thumbs.db
 # Вспомогательные файлы
 *.log*
 node_modules/
+checkpoint.md
+test.js
 
+# Собранные бандлы
 public/bundle.js
 public/bundle.js.map
