@@ -15,6 +15,7 @@ const VideoPlayer = (props) => {
           src={previewVideo}
           poster={preview}
           ref={playVideo}
+          muted
         >
         </video>
         :
