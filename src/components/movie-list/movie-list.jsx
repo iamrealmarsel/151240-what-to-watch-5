@@ -3,33 +3,21 @@ import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
 
 
-class MovieList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeMovieId: null,
-    };
-    this.handleHover = this.handleHover.bind(this);
-  }
+const MovieList = (props) => {
+  const {movies, onMovieCardClick} = props;
 
-  handleHover(id) {
-    this.setState({
-      activeMovieId: id,
-    });
-  }
-
-  render() {
-    const {movies, onMovieCardClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onHover={this.handleHover} onMovieCardClick={onMovieCardClick} />
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="catalog__movies-list">
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieCardClick={onMovieCardClick}
+        />
+      ))}
+    </div>
+  );
+};
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
