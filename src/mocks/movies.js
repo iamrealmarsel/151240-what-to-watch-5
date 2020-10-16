@@ -2,7 +2,7 @@ import {generateId, convertMinutesToHoursAndMinutes} from '../utils.js';
 
 const MOVIE_COUNT = 8;
 const REVIEW_COUNT = 5;
-const PREVIEW_VIDEO = `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`;
+const PREVIEW_VIDEO = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 const POSTER = `img/the-grand-budapest-hotel-poster.jpg`;
 const BACKGROUND = `img/bg-the-grand-budapest-hotel.jpg`;
 const DIRECTOR = `Wes Andreson`;
