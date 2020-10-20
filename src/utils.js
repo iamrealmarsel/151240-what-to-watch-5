@@ -1,3 +1,6 @@
+import {ALL_GENRES} from './const.js';
+
+
 export const getMyList = (movies) => {
   return movies.filter((movie) => movie.myList);
 };
@@ -27,3 +30,11 @@ export const convertMinutesToHoursAndMinutes = (totalMinutes) => {
 
   return `${hours}h ${minutes}m`;
 };
+
+
+export const getGenres = (movies) => {
+  const genres = movies.map((movie) => movie.genre);
+
+  return [ALL_GENRES, ...new Set(genres)];
+};
+

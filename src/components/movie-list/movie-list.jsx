@@ -1,10 +1,12 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 
 const MovieList = (props) => {
-  const {movies, onMovieCardClick} = props;
+  const {state, onMovieCardClick} = props;
+  const {movies} = state;
 
   return (
     <div className="catalog__movies-list">
@@ -43,4 +45,19 @@ MovieList.propTypes = {
 };
 
 
-export default MovieList;
+// export default MovieList;
+
+const mapStateToProps = (state) => (
+  {
+    state,
+  }
+);
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    dispatch,
+  }
+);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

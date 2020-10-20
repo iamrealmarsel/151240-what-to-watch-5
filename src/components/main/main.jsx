@@ -1,6 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import MovieList from '../movie-list/movie-list';
+import GenreList from '../genre-list/genre-list';
 
 
 const Main = (props) => {
@@ -101,6 +103,7 @@ const Main = (props) => {
             </li>
           </ul>
 
+          <GenreList />
           <MovieList movies={movies} onMovieCardClick={onMovieCardClick} />
 
           <div className="catalog__more">
@@ -118,7 +121,7 @@ const Main = (props) => {
           </div>
 
           <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
+            <p>© 2020 What to watch Ltd.</p>
           </div>
         </footer>
       </div>
@@ -149,5 +152,16 @@ Main.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
 };
 
+// const mapStateToProps = (state) => {
 
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+
+// };
+
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Main);
 export default Main;
+
+
