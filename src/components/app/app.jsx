@@ -5,21 +5,19 @@ import Main from '../main/main';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
 import Movie from '../movie/movie';
-import AddReview from '../add-review/add-review';
+import Review from '../review/review';
 import Player from '../player/player';
-import {getMyList} from '../../utils.js';
 
 
 const App = (props) => {
-  const {movies, reviews} = props;
-  const myList = getMyList(movies);
+  const {reviews} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/'
           render={({history}) => (
-            <Main movies={movies} onMovieCardClick={(id) => history.push(`/films/${id}`)} />
+            <Main onMovieCardClick={(id) => history.push(`/films/${id}`)} />
           )}
         />
         <Route exact path='/login'>
@@ -27,18 +25,18 @@ const App = (props) => {
         </Route>
         <Route exact path='/mylist'
           render={({history}) => (
-            <MyList movies={myList} onMovieCardClick={(id) => history.push(`/films/${id}`)} />
+            <MyList onMovieCardClick={(id) => history.push(`/films/${id}`)} />
           )}
         />
         <Route exact path='/films/:id'
           render={({history, match}) => (
-            <Movie movies={movies} reviews={reviews} match={match}
+            <Movie reviews={reviews} match={match}
               onMovieCardClick={(id) => history.push(`/films/${id}`)} />
           )}
         />
         <Route exact path='/films/:id/review'
           render={({match}) => (
-            <AddReview movies={movies} match={match}/>
+            <Review match={match}/>
           )}
         />
         <Route exact path='/player/:id'>

@@ -1,10 +1,16 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import MovieList from '../movie-list/movie-list';
 
 
+const getMyList = (movies) => {
+  return movies.filter((movie) => movie.myList);
+};
+
 const MyList = (props) => {
   const {movies, onMovieCardClick} = props;
+  const myList = getMyList(movies);
 
   return (
     <div className="user-page">
@@ -29,7 +35,7 @@ const MyList = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <MovieList movies={movies} onMovieCardClick={onMovieCardClick} />
+        <MovieList movies={myList} onMovieCardClick={onMovieCardClick} />
       </section>
 
       <footer className="page-footer">
@@ -42,7 +48,7 @@ const MyList = (props) => {
         </div>
 
         <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
+          <p>© 2020 What to watch Ltd.</p>
         </div>
       </footer>
     </div>
@@ -72,5 +78,11 @@ MyList.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => (
+  {
+    movies: state.movies,
+  }
+);
 
-export default MyList;
+
+export default connect(mapStateToProps)(MyList);
