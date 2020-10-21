@@ -33,8 +33,6 @@ const GenreList = (props) => {
 };
 
 GenreList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-  })).isRequired,
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.object.isRequired,
 };
