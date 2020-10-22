@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import RatingStars from '../rating-stars/rating-stars';
 import {generateId} from '../../utils.js';
+import {connect} from 'react-redux';
 
 
-class AddReview extends React.PureComponent {
+class Review extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       ratingStarsChecks: [false, false, true, false, false],
       text: ``,
     };
-
   }
 
   handleStarClick(checked, index) {
@@ -109,7 +109,7 @@ class AddReview extends React.PureComponent {
   }
 }
 
-AddReview.propTypes = {
+Review.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -133,4 +133,10 @@ AddReview.propTypes = {
 };
 
 
-export default AddReview;
+const mapStateToProps = (state) => (
+  {
+    movies: state.movies,
+  }
+);
+
+export default connect(mapStateToProps)(Review);

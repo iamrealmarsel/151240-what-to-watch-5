@@ -1,9 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {getAlikeMovies} from '../../utils.js';
 import MovieList from '../movie-list/movie-list';
+import {connect} from 'react-redux';
 
+
+const getAlikeMovies = (movies, currentMovie) => {
+  const totalAlikeMovies =
+    movies.filter((movie) => movie.id !== currentMovie.id && movie.genre === currentMovie.genre);
+
+  if (totalAlikeMovies.length <= 4) {
+    return totalAlikeMovies;
+  }
+
+  let alikeMovies = [];
+
+  for (let i = 0; i < 0; i++) {
+    alikeMovies.push(totalAlikeMovies[i]);
+  }
+
+  return alikeMovies;
+};
 
 const Movie = (props) => {
   const {movies, onMovieCardClick, match} = props;
@@ -159,4 +176,10 @@ Movie.propTypes = {
 };
 
 
-export default Movie;
+const mapStateToProps = (state) => (
+  {
+    movies: state.movies,
+  }
+);
+
+export default connect(mapStateToProps)(Movie);
