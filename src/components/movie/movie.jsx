@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import MovieList from '../movie-list/movie-list';
 import {connect} from 'react-redux';
+import MovieList from '../movie-list/movie-list';
+import {ALIKE_MOVIE_COUNT} from '../../const';
+import {moviesPropTypes} from '../prop-types';
 
 
 const getAlikeMovies = (movies, currentMovie) => {
@@ -15,7 +17,7 @@ const getAlikeMovies = (movies, currentMovie) => {
 
   let alikeMovies = [];
 
-  for (let i = 0; i < 0; i++) {
+  for (let i = 0; i < ALIKE_MOVIE_COUNT; i++) {
     alikeMovies.push(totalAlikeMovies[i]);
   }
 
@@ -152,34 +154,16 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideo: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingText: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starringShort: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    runtime: PropTypes.string.isRequired,
-    myList: PropTypes.bool.isRequired,
-  })).isRequired,
+  movies: moviesPropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
-
 
 const mapStateToProps = (state) => (
   {
     movies: state.movies,
   }
 );
+
 
 export default connect(mapStateToProps)(Movie);

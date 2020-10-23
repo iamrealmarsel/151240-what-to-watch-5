@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player';
+import {moviePropTypes} from '../prop-types';
 
 
 class MovieCard extends React.PureComponent {
@@ -65,25 +66,7 @@ class MovieCard extends React.PureComponent {
 }
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideo: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingText: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starringShort: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    runtime: PropTypes.string.isRequired,
-    myList: PropTypes.bool.isRequired,
-  }).isRequired,
+  movie: moviePropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
 };
 

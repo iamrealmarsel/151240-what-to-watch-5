@@ -2,15 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {changeGenre} from '../../store/action';
+import {getGenres} from '../../utils';
 
 
 const GenreList = (props) => {
-  const {currentGenre, genres} = props.state;
+  const {currentGenre, genres} = props;
 
   const handleGenreClick = (event) => {
     event.preventDefault();
     props.dispatch(changeGenre(event.currentTarget.dataset.filter));
   };
+
 
   return (
     <ul className="catalog__genres-list">
@@ -34,12 +36,14 @@ const GenreList = (props) => {
 
 GenreList.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  state: PropTypes.object.isRequired,
+  currentGenre: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => (
   {
-    state,
+    currentGenre: state.currentGenre,
+    genres: getGenres(state.movies),
   }
 );
 
