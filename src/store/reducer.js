@@ -1,10 +1,11 @@
-import {movies as mockMovies} from '../mocks/movies';
+import {movies, reviews} from '../mocks/movies';
 import {ALL_GENRES, ActionType} from '../const';
 
 
 const initialState = {
   currentGenre: ALL_GENRES,
-  movies: mockMovies,
+  movies,
+  reviews,
 };
 
 const reducer = (state = initialState, action) => {

@@ -15,8 +15,8 @@ export const moviesPropTypes = PropTypes.arrayOf(PropTypes.shape({
   ratingText: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   director: PropTypes.string.isRequired,
-  starringShort: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
+  starringShort: PropTypes.array.isRequired,
+  starring: PropTypes.array.isRequired,
   runtime: PropTypes.string.isRequired,
   myList: PropTypes.bool.isRequired,
 })).isRequired;
@@ -35,8 +35,15 @@ export const moviePropTypes = PropTypes.shape({
   ratingText: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   director: PropTypes.string.isRequired,
-  starringShort: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
+  starringShort: PropTypes.array.isRequired,
+  starring: PropTypes.array.isRequired,
   runtime: PropTypes.string.isRequired,
   myList: PropTypes.bool.isRequired,
 }).isRequired;
+
+export const reviewsPropTypes = PropTypes.arrayOf(PropTypes.shape({
+  author: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  message: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+})).isRequired;

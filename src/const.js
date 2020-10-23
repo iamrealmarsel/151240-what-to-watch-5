@@ -6,3 +6,9 @@ export const ActionType = {
 
 export const MOVIE_COUNT_STEP = 8;
 export const ALIKE_MOVIE_COUNT = 4;
+
+export const Tab = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};
