@@ -1,6 +1,7 @@
 import {generateId, convertMinutesToHoursAndMinutes} from '../utils.js';
 
-const MOVIE_COUNT = 8;
+
+const MOVIE_COUNT = 50;
 const REVIEW_COUNT = 5;
 const PREVIEW_VIDEO = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 const POSTER = `img/the-grand-budapest-hotel-poster.jpg`;
@@ -178,9 +179,10 @@ const generateRandomDate = (start, end) => {
   return `${MONTHS[randomeDate.getMonth()]} ${randomeDate.getDate()}, ${randomeDate.getFullYear()}`;
 };
 
-const generateMovie = () => {
+const generateMovie = (id) => {
   return {
-    id: generateId(),
+    // id: generateId(),
+    id,
     title: getRandomElement(TITLES),
     genre: getRandomElement(GENRES),
     preview: getRandomElement(PREVIEWS),
@@ -193,8 +195,8 @@ const generateMovie = () => {
     ratingText: getRandomElement(RATING_TEXT),
     votes: getRandomInteger(VOTES_MAX),
     director: DIRECTOR,
-    starringShort: STARRING_SHORT.join(`, `),
-    starring: STARRING.join(`, `),
+    starringShort: STARRING_SHORT,
+    starring: STARRING,
     runtime: convertMinutesToHoursAndMinutes(getRandomInteger(RuntimeMinutes.MIN, RuntimeMinutes.MAX)),
     myList: Boolean(getRandomInteger()),
   };
@@ -202,6 +204,7 @@ const generateMovie = () => {
 
 const generateReview = () => {
   return {
+    id: generateId(),
     author: getRandomElement(AUTHORS),
     rating: getRandomInteger(RATING_REVIEW_MAX),
     message: getRandomElement(MESSAGES),
@@ -213,7 +216,7 @@ export let movies = [];
 export let reviews = [];
 
 for (let i = 0; i < MOVIE_COUNT; i++) {
-  movies.push(generateMovie());
+  movies.push(generateMovie(i));
 }
 
 for (let i = 0; i < REVIEW_COUNT; i++) {

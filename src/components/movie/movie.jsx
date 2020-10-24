@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import MovieList from '../movie-list/movie-list';
 import {connect} from 'react-redux';
+import MovieList from '../movie-list/movie-list';
+import {ALIKE_MOVIE_COUNT} from '../../const';
+import {moviesPropTypes, reviewsPropTypes} from '../prop-types';
+import Tabs from '../tabs/tabs';
 
 
 const getAlikeMovies = (movies, currentMovie) => {
@@ -15,7 +18,7 @@ const getAlikeMovies = (movies, currentMovie) => {
 
   let alikeMovies = [];
 
-  for (let i = 0; i < 0; i++) {
+  for (let i = 0; i < ALIKE_MOVIE_COUNT; i++) {
     alikeMovies.push(totalAlikeMovies[i]);
   }
 
@@ -23,11 +26,11 @@ const getAlikeMovies = (movies, currentMovie) => {
 };
 
 const Movie = (props) => {
-  const {movies, onMovieCardClick, match} = props;
+  const {movies, reviews, onMovieCardClick, match} = props;
   const id = Number(match.params.id);
   const currentMovie = movies.find((movie) => movie.id === id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
-  const {title, genre, releaseYear, director, description, starringShort, ratingText, rating, votes} = currentMovie;
+  const {title, genre, releaseYear} = currentMovie;
 
   return (
     <React.Fragment>
@@ -90,38 +93,11 @@ const Movie = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{ratingText}</span>
-                  <span className="movie-rating__count">{votes} ratings</span>
-                </p>
-              </div>
+              <Tabs movie={currentMovie} reviews={reviews} />
 
-              <div className="movie-card__text">
-                <p>{description}</p>
-
-                <p>{description}</p>
-
-                <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: {starringShort}</strong></p>
-              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -152,34 +128,18 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideo: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingText: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starringShort: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    runtime: PropTypes.string.isRequired,
-    myList: PropTypes.bool.isRequired,
-  })).isRequired,
+  movies: moviesPropTypes,
+  reviews: reviewsPropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
-
 const mapStateToProps = (state) => (
   {
     movies: state.movies,
+    reviews: state.reviews,
   }
 );
+
 
 export default connect(mapStateToProps)(Movie);

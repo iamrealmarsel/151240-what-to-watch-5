@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const SignIn = () => {
-
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

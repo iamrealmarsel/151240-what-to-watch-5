@@ -1,18 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import MovieList from '../movie-list/movie-list';
 import GenreList from '../genre-list/genre-list';
+import {getMoviesByGenre} from '../../utils.js';
+import MovieListAndShowMoreButton from '../movie-list-and-show-more-button/movie-list-and-show-more-button';
+import {moviesPropTypes} from '../prop-types';
 
 
 class Main extends React.PureComponent {
   constructor(props) {
     super(props);
-
   }
 
   render() {
-    const {movies, moviesByGenre, onMovieCardClick} = this.props;
+    const {movies, onMovieCardClick, currentGenre} = this.props;
     const {title, genre, releaseYear, background, poster} = movies[0];
 
     return (
@@ -77,11 +78,8 @@ class Main extends React.PureComponent {
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
             <GenreList />
-            <MovieList movies={moviesByGenre} onMovieCardClick={onMovieCardClick} />
+            <MovieListAndShowMoreButton currentGenre={currentGenre} movies={movies} onMovieCardClick={onMovieCardClick}/>
 
-            <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
-            </div>
           </section>
 
           <footer className="page-footer">
@@ -104,52 +102,17 @@ class Main extends React.PureComponent {
 }
 
 Main.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideo: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingText: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starringShort: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    runtime: PropTypes.string.isRequired,
-    myList: PropTypes.bool.isRequired,
-  })).isRequired,
-  moviesByGenre: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideo: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingText: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starringShort: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    runtime: PropTypes.string.isRequired,
-    myList: PropTypes.bool.isRequired,
-  })).isRequired,
+  movies: moviesPropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
+  currentGenre: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => (
   {
-    movies: state.movies,
-    moviesByGenre: state.moviesByGenre,
+    movies: getMoviesByGenre(state.movies, state.currentGenre),
+    currentGenre: state.currentGenre
   }
 );
+
 
 export default connect(mapStateToProps)(Main);

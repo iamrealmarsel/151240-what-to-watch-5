@@ -25,9 +25,6 @@ const VideoPlayer = (props) => {
   );
 };
 
-
-export default VideoPlayer;
-
 VideoPlayer.propTypes = {
   preview: PropTypes.string.isRequired,
   previewVideo: PropTypes.string.isRequired,
@@ -35,3 +32,6 @@ VideoPlayer.propTypes = {
   isVideo: PropTypes.bool.isRequired,
   playVideo: PropTypes.func.isRequired,
 };
+
+
+export default VideoPlayer;
