@@ -16,7 +16,6 @@ const TabsReviews = (props) => {
       <div className="review__rating">{review.rating}</div>
     </div>
   ));
-
   const halfOfArray = Math.ceil(reviewsElements.length / 2);
   const firstHalfReviewsElements = reviewsElements.slice(0, halfOfArray);
   const secondHalfReviewsElements = reviewsElements.slice(halfOfArray);
