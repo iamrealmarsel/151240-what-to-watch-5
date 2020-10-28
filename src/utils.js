@@ -23,3 +23,11 @@ export const getGenres = (movies) => {
 
   return [ALL_GENRES, ...new Set(genres)];
 };
+
+export const getVisibleMovies = (movies, visibleMoviesCount) => {
+  const visibleMovies = movies.slice(0, visibleMoviesCount);
+
+  return visibleMovies;
+};
+
+export const isEnableShowMoreButton = (movies, visibleMoviesCount) => movies.length > visibleMoviesCount;

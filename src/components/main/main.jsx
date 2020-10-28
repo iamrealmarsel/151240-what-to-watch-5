@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import GenreList from '../genre-list/genre-list';
-import MovieListAndShowMoreButton from '../movie-list-and-show-more-button/movie-list-and-show-more-button';
+import MovieListContainer from '../movie-list-container/movie-list-container';
 import {moviePropTypes} from '../prop-types';
 
 
@@ -77,7 +77,7 @@ class Main extends React.PureComponent {
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
             <GenreList />
-            <MovieListAndShowMoreButton onMovieCardClick={onMovieCardClick}/>
+            <MovieListContainer onMovieCardClick={onMovieCardClick}/>
 
           </section>
 
