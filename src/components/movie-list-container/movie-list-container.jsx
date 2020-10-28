@@ -5,7 +5,7 @@ import ShowMoreButton from '../show-more-button/show-more-button';
 import MovieList from '../movie-list/movie-list';
 import {MOVIE_COUNT_STEP} from '../../const';
 import {moviesPropTypes} from '../prop-types';
-import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from '../../utils.js';
+import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from '../../store/selector';
 import {showMoreMovies} from '../../store/action';
 
 
@@ -21,12 +21,7 @@ const MovieListContainer = (props) => {
   return (
     <React.Fragment>
       <MovieList movies={visibleMovies} onMovieCardClick={onMovieCardClick} />
-
-      {
-        (showMoreButton)
-          ? <ShowMoreButton onButtonClick={handleButtonClick} />
-          : ``
-      }
+      {showMoreButton && <ShowMoreButton onButtonClick={handleButtonClick} />}
     </React.Fragment>
   );
 };
