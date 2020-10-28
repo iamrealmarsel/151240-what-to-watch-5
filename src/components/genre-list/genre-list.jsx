@@ -13,7 +13,6 @@ const GenreList = (props) => {
     props.dispatch(changeGenre(event.currentTarget.dataset.filter));
   };
 
-
   return (
     <ul className="catalog__genres-list">
       {genres.map((genre) => (
@@ -40,18 +39,14 @@ GenreList.propTypes = {
   genres: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => (
-  {
-    currentGenre: state.currentGenre,
-    genres: getGenres(state.movies),
-  }
-);
+const mapStateToProps = (state) => ({
+  currentGenre: state.currentGenre,
+  genres: getGenres(state.movies),
+});
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    dispatch,
-  }
-);
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

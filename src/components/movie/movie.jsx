@@ -134,12 +134,10 @@ Movie.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => (
-  {
-    movies: state.movies,
-    reviews: state.reviews,
-  }
-);
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  reviews: state.reviews,
+});
 
 
 export default connect(mapStateToProps)(Movie);
