@@ -1,7 +1,7 @@
 import {generateId, convertMinutesToHoursAndMinutes} from '../utils.js';
 
 
-const MOVIE_COUNT = 50;
+const MOVIE_COUNT = 60;
 const REVIEW_COUNT = 5;
 const PREVIEW_VIDEO = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 const POSTER = `img/the-grand-budapest-hotel-poster.jpg`;
