@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import GenreList from '../genre-list/genre-list';
-import {getMoviesByGenre} from '../../utils.js';
 import MovieListAndShowMoreButton from '../movie-list-and-show-more-button/movie-list-and-show-more-button';
-import {moviesPropTypes} from '../prop-types';
+import {moviePropTypes} from '../prop-types';
 
 
 class Main extends React.PureComponent {
@@ -13,8 +12,8 @@ class Main extends React.PureComponent {
   }
 
   render() {
-    const {movies, onMovieCardClick, currentGenre} = this.props;
-    const {title, genre, releaseYear, background, poster} = movies[0];
+    const {onMovieCardClick, promoMovie} = this.props;
+    const {title, genre, releaseYear, background, poster} = promoMovie;
 
     return (
       <React.Fragment>
@@ -78,7 +77,7 @@ class Main extends React.PureComponent {
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
             <GenreList />
-            <MovieListAndShowMoreButton currentGenre={currentGenre} movies={movies} onMovieCardClick={onMovieCardClick}/>
+            <MovieListAndShowMoreButton onMovieCardClick={onMovieCardClick}/>
 
           </section>
 
@@ -102,15 +101,13 @@ class Main extends React.PureComponent {
 }
 
 Main.propTypes = {
-  movies: moviesPropTypes,
+  promoMovie: moviePropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
-  currentGenre: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => (
   {
-    movies: getMoviesByGenre(state.movies, state.currentGenre),
-    currentGenre: state.currentGenre
+    promoMovie: state.promoMovie,
   }
 );
 

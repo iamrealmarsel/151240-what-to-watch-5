@@ -4,6 +4,7 @@ import {ALL_GENRES, ActionType} from '../const';
 
 const initialState = {
   currentGenre: ALL_GENRES,
+  promoMovie: movies[0],
   movies,
   reviews,
 };

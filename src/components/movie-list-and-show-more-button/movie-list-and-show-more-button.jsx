@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import ShowMoreButton from '../show-more-button/show-more-button';
 import MovieList from '../movie-list/movie-list';
 import {MOVIE_COUNT_STEP} from '../../const';
 import {moviesPropTypes} from '../prop-types';
+import {getMoviesByGenre} from '../../utils.js';
 
 
 class MovieListAndShowMoreButton extends React.PureComponent {
@@ -71,5 +73,12 @@ MovieListAndShowMoreButton.propTypes = {
   currentGenre: PropTypes.string.isRequired,
 };
 
+const mapStateToProps = (state) => (
+  {
+    movies: getMoviesByGenre(state.movies, state.currentGenre),
+    currentGenre: state.currentGenre,
+  }
+);
 
-export default MovieListAndShowMoreButton;
+
+export default connect(mapStateToProps)(MovieListAndShowMoreButton);
