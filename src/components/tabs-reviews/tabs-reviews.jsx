@@ -1,5 +1,5 @@
 import React from 'react';
-import {reviewsPropTypes} from 'Components/prop-types';
+import {reviewsPropTypes} from 'Store/prop-types';
 
 
 const TabsReviews = (props) => {

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import RatingStars from 'RatingStars/rating-stars';
 import {generateId} from 'Src/utils.js';
-import {moviesPropTypes} from 'Components/prop-types';
+import {moviesPropTypes} from 'Store/prop-types';
 import withReviewState from 'Hocs/with-review-state';
 
 

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ShowMoreButton from 'ShowMoreButton/show-more-button';
 import MovieList from 'MovieList/movie-list';
 import {MOVIE_COUNT_STEP} from 'Src/const';
-import {moviesPropTypes} from 'Components/prop-types';
+import {moviesPropTypes} from 'Store/prop-types';
 import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from 'Store/selector';
 import {showMoreMovies} from 'Store/action';
 

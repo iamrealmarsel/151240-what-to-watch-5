@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import VideoPlayer from 'VideoPlayer/video-player';
-import {moviePropTypes} from 'Components/prop-types';
+import {moviePropTypes} from 'Store/prop-types';
 import withMovieCardState from 'Hocs/with-movie-card-state';
 
 

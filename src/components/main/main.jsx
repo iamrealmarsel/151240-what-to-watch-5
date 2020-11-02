@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import GenreList from 'GenreList/genre-list';
 import MovieListContainer from 'MovieListContainer/movie-list-container';
-import {moviePropTypes} from 'Components/prop-types';
+import {moviePropTypes} from 'Store/prop-types';
 
 
 const Main = (props) => {

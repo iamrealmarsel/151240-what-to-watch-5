@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {moviePropTypes, reviewsPropTypes} from 'Components/prop-types';
+import {moviePropTypes, reviewsPropTypes} from 'Store/prop-types';
 import {Tab} from 'Src/const';
 import TabsOverview from 'TabsOverview/tabs-overview';
 import TabsDetails from 'TabsDetails/tabs-details';

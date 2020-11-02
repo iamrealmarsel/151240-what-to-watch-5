@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import MovieList from 'MovieList/movie-list';
 import {ALIKE_MOVIE_COUNT} from 'Src/const';
-import {moviesPropTypes, reviewsPropTypes} from 'Components/prop-types';
+import {moviesPropTypes, reviewsPropTypes} from 'Store/prop-types';
 import Tabs from 'Tabs/tabs';
 
 

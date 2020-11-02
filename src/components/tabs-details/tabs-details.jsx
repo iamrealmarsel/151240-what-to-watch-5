@@ -1,5 +1,5 @@
 import React from 'react';
-import {moviePropTypes} from 'Components/prop-types';
+import {moviePropTypes} from 'Store/prop-types';
 
 
 const TabsDetails = (props) => {
