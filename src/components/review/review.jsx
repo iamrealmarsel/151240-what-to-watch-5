@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import RatingStars from '../rating-stars/rating-stars';
-import {generateId} from '../../utils.js';
 import {connect} from 'react-redux';
-import {moviesPropTypes} from '../prop-types';
-import withReviewState from '../../hocs/with-review-state';
+import RatingStars from 'RatingStars/rating-stars';
+import {generateId} from 'Src/utils.js';
+import {moviesPropTypes} from 'Components/prop-types';
+import withReviewState from 'Hocs/with-review-state';
 
 
 const Review = (props) => {

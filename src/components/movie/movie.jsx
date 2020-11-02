@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import MovieList from '../movie-list/movie-list';
-import {ALIKE_MOVIE_COUNT} from '../../const';
-import {moviesPropTypes, reviewsPropTypes} from '../prop-types';
-import Tabs from '../tabs/tabs';
+import MovieList from 'MovieList/movie-list';
+import {ALIKE_MOVIE_COUNT} from 'Src/const';
+import {moviesPropTypes, reviewsPropTypes} from 'Components/prop-types';
+import Tabs from 'Tabs/tabs';
 
 
 const getAlikeMovies = (movies, currentMovie) => {

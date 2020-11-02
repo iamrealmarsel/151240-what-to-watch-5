@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {moviePropTypes, reviewsPropTypes} from '../prop-types';
-import {Tab} from '../../const';
-import TabsOverview from '../tabs-overview/tabs-overview';
-import TabsDetails from '../tabs-details/tabs-details';
-import TabsReviews from '../tabs-reviews/tabs-reviews';
-import withTabState from '../../hocs/with-tab-state';
+import {moviePropTypes, reviewsPropTypes} from 'Components/prop-types';
+import {Tab} from 'Src/const';
+import TabsOverview from 'TabsOverview/tabs-overview';
+import TabsDetails from 'TabsDetails/tabs-details';
+import TabsReviews from 'TabsReviews/tabs-reviews';
+import withTabState from 'Hocs/with-tab-state';
 
 
 const Tabs = (props) => {

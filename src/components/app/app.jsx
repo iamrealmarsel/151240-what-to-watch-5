@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Main from '../main/main';
-import SignIn from '../sign-in/sign-in';
-import MyList from '../my-list/my-list';
-import Movie from '../movie/movie';
-import Review from '../review/review';
-import Player from '../player/player';
+import Main from 'Main/main';
+import SignIn from 'SignIn/sign-in';
+import MyList from 'MyList/my-list';
+import Movie from 'Movie/movie';
+import Review from 'Review/review';
+import Player from 'Player/player';
 
 
 const App = (props) => {

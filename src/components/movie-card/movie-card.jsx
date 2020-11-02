@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import VideoPlayer from '../video-player/video-player';
-import {moviePropTypes} from '../prop-types';
-import withMovieCardState from '../../hocs/with-movie-card-state';
+import VideoPlayer from 'VideoPlayer/video-player';
+import {moviePropTypes} from 'Components/prop-types';
+import withMovieCardState from 'Hocs/with-movie-card-state';
 
 
 const MovieCard = (props) => {
