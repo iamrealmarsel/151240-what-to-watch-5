@@ -1,4 +1,4 @@
-import {ActionType} from '../const';
+import {ActionType} from 'Src/const';
 
 
 export const changeGenre = (genre) => ({

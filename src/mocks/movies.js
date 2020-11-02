@@ -1,4 +1,4 @@
-import {generateId, convertMinutesToHoursAndMinutes} from '../utils.js';
+import {generateId, convertMinutesToHoursAndMinutes} from 'Src/utils.js';
 
 
 const MOVIE_COUNT = 60;

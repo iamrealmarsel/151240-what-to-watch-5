@@ -3,27 +3,10 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import MovieList from 'MovieList/movie-list';
-import {ALIKE_MOVIE_COUNT} from 'Src/const';
 import {moviesPropTypes, reviewsPropTypes} from 'Store/prop-types';
 import Tabs from 'Tabs/tabs';
+import {getAlikeMovies} from 'Store/selector';
 
-
-const getAlikeMovies = (movies, currentMovie) => {
-  const totalAlikeMovies =
-    movies.filter((movie) => movie.id !== currentMovie.id && movie.genre === currentMovie.genre);
-
-  if (totalAlikeMovies.length <= 4) {
-    return totalAlikeMovies;
-  }
-
-  let alikeMovies = [];
-
-  for (let i = 0; i < ALIKE_MOVIE_COUNT; i++) {
-    alikeMovies.push(totalAlikeMovies[i]);
-  }
-
-  return alikeMovies;
-};
 
 const Movie = (props) => {
   const {movies, reviews, onMovieCardClick, match} = props;

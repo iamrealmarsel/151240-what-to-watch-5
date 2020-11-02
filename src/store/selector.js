@@ -1,4 +1,4 @@
-import {ALL_GENRES} from '../const';
+import {ALL_GENRES, ALIKE_MOVIE_COUNT} from 'Src/const';
 
 
 export const getMoviesByGenre = (movies, genre) => {
@@ -22,3 +22,20 @@ export const getVisibleMovies = (movies, visibleMoviesCount) => {
 };
 
 export const isEnableShowMoreButton = (movies, visibleMoviesCount) => movies.length > visibleMoviesCount;
+
+export const getAlikeMovies = (movies, currentMovie) => {
+  const totalAlikeMovies =
+    movies.filter((movie) => movie.id !== currentMovie.id && movie.genre === currentMovie.genre);
+
+  if (totalAlikeMovies.length <= ALIKE_MOVIE_COUNT) {
+    return totalAlikeMovies;
+  }
+
+  let alikeMovies = [];
+
+  for (let i = 0; i < ALIKE_MOVIE_COUNT; i++) {
+    alikeMovies.push(totalAlikeMovies[i]);
+  }
+
+  return alikeMovies;
+};
