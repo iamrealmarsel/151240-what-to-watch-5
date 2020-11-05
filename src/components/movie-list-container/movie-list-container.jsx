@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ShowMoreButton from 'ShowMoreButton/show-more-button';
-import MovieList from 'MovieList/movie-list';
-import {MOVIE_COUNT_STEP} from 'Src/const';
-import {moviesPropTypes} from 'Store/prop-types';
-import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from 'Store/selector';
-import {showMoreMovies} from 'Store/action';
+import ShowMoreButton from 'components/show-more-button/show-more-button';
+import MovieList from 'components/movie-list/movie-list';
+import {MOVIE_COUNT_STEP} from 'const';
+import {moviesPropTypes} from 'store/prop-types';
+import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from 'store/selector';
+import {showMoreMovies} from 'store/action';
 
 
 const MovieListContainer = (props) => {

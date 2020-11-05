@@ -1,5 +1,5 @@
-import {reviews} from 'Mocks/movies';
-import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from 'Src/const';
+import {reviews} from 'mocks/movies';
+import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from 'const';
 
 
 const initialState = {

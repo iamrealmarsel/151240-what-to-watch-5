@@ -1,4 +1,4 @@
-import {loadMovies, loadMoviePromo} from 'Store/action';
+import {loadMovies, loadMoviePromo} from 'store/action';
 
 const adaptMovieToClient = (movie) => {
   const adaptedMovie = Object.assign(

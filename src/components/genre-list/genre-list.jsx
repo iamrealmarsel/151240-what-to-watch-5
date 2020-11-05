@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {changeGenre} from 'Store/action';
-import {getGenres} from 'Store/selector';
+import {changeGenre} from 'store/action';
+import {getGenres} from 'store/selector';
 
 
 const GenreList = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import {moviePropTypes} from 'Store/prop-types';
-import {convertMinutesToHoursAndMinutes} from 'Store/selector';
+import {moviePropTypes} from 'store/prop-types';
+import {convertMinutesToHoursAndMinutes} from 'store/selector';
 
 
 const TabsDetails = (props) => {

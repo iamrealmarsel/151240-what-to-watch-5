@@ -1,4 +1,4 @@
-import {generateId} from 'Src/utils.js';
+import {generateId} from 'utils.js';
 
 
 const MOVIE_COUNT = 60;

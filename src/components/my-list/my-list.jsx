@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import MovieList from 'MovieList/movie-list';
-import {moviesPropTypes} from 'Store/prop-types';
+import MovieList from 'components/movie-list/movie-list';
+import {moviesPropTypes} from 'store/prop-types';
 
 
 const getMyList = (movies) => {

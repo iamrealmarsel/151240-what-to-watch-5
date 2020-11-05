@@ -1,6 +1,6 @@
 import React from 'react';
-import {moviePropTypes} from 'Store/prop-types';
-import {convertRatingToText} from 'Store/selector';
+import {moviePropTypes} from 'store/prop-types';
+import {convertRatingToText} from 'store/selector';
 
 
 const TabsOverview = (props) => {

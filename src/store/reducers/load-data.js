@@ -1,5 +1,5 @@
-import {reviews} from 'Mocks/movies';
-import {ActionType} from 'Src/const';
+import {reviews} from 'mocks/movies';
+import {ActionType} from 'const';
 
 
 const initialState = {

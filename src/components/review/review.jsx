@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import RatingStars from 'RatingStars/rating-stars';
-import {generateId} from 'Src/utils.js';
-import {moviesPropTypes} from 'Store/prop-types';
-import withReviewState from 'Hocs/with-review-state';
+import RatingStars from 'components/rating-stars/rating-stars';
+import {generateId} from 'utils.js';
+import {moviesPropTypes} from 'store/prop-types';
+import withReviewState from 'hocs/with-review-state';
 
 
 const Review = (props) => {

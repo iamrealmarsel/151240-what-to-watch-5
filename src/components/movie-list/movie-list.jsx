@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
-import {moviesPropTypes} from 'Store/prop-types';
+import MovieCard from 'components/movie-card/movie-card';
+import {moviesPropTypes} from 'store/prop-types';
 
 
 const MovieList = (props) => {

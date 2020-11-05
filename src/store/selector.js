@@ -1,4 +1,4 @@
-import {ALL_GENRES, ALIKE_MOVIE_COUNT, RatingText} from 'Src/const';
+import {ALL_GENRES, ALIKE_MOVIE_COUNT, RatingText} from 'const';
 
 
 export const getMoviesByGenre = (movies, genre) => {

@@ -1,4 +1,4 @@
-import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from 'Src/const';
+import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from 'const';
 
 
 const initialState = {
