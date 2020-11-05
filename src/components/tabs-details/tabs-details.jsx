@@ -1,5 +1,6 @@
 import React from 'react';
 import {moviePropTypes} from 'Store/prop-types';
+import {convertMinutesToHoursAndMinutes} from 'Store/selector';
 
 
 const TabsDetails = (props) => {
@@ -22,7 +23,7 @@ const TabsDetails = (props) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{runtime}</span>
+          <span className="movie-card__details-value">{convertMinutesToHoursAndMinutes(runtime)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>

@@ -7,8 +7,8 @@ import {moviePropTypes} from 'Store/prop-types';
 
 
 const Main = (props) => {
-  const {onMovieCardClick, promoMovie} = props;
-  const {title, genre, releaseYear, background, poster} = promoMovie;
+  const {onMovieCardClick, moviePromo} = props;
+  const {title, genre, releaseYear, background, poster} = moviePromo;
 
   return (
     <React.Fragment>
@@ -95,12 +95,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoMovie: moviePropTypes,
+  moviePromo: moviePropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  promoMovie: state.promoMovie,
+const mapStateToProps = ({data}) => ({
+  moviePromo: data.moviePromo,
 });
 
 

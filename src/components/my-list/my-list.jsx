@@ -61,8 +61,8 @@ MyList.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
+const mapStateToProps = ({data}) => ({
+  movies: data.movies,
 });
 
 

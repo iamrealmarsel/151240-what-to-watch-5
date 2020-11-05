@@ -1,4 +1,4 @@
-import {ALL_GENRES, ALIKE_MOVIE_COUNT} from 'Src/const';
+import {ALL_GENRES, ALIKE_MOVIE_COUNT, RatingText} from 'Src/const';
 
 
 export const getMoviesByGenre = (movies, genre) => {
@@ -38,4 +38,35 @@ export const getAlikeMovies = (movies, currentMovie) => {
   }
 
   return alikeMovies;
+};
+
+export const convertMinutesToHoursAndMinutes = (totalMinutes) => {
+  const minutes = totalMinutes % 60;
+  const hours = (totalMinutes - minutes) / 60;
+
+  return `${hours}h ${minutes}m`;
+};
+
+export const convertRatingToText = (rating) => {
+  if (rating >= 0 && rating < 3) {
+    return RatingText.BAD;
+  }
+
+  if (rating >= 3 && rating < 5) {
+    return RatingText.NORMAL;
+  }
+
+  if (rating >= 5 && rating < 8) {
+    return RatingText.GOOD;
+  }
+
+  if (rating >= 8 && rating < 10) {
+    return RatingText.VERY_GOOD;
+  }
+
+  if (rating === 10) {
+    return RatingText.AWESOME;
+  }
+
+  return null;
 };

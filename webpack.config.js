@@ -48,6 +48,7 @@ module.exports = {
       Mocks: path.resolve(__dirname, 'src/mocks/'),
       Hocs: path.resolve(__dirname, 'src/hocs/'),
       Src: path.resolve(__dirname, 'src/'),
+      Services: path.resolve(__dirname, 'src/services/'),
     }
   },
   devtool: 'source-map',
