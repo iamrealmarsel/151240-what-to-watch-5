@@ -5,7 +5,6 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {createAPI} from 'services/api';
 import App from 'components/app/app';
-import {reviews} from 'mocks/movies';
 import rootReducer from 'store/root-reducer';
 
 
@@ -17,7 +16,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App reviews={reviews} />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );
