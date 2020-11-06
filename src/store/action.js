@@ -20,3 +20,8 @@ export const loadMoviePromo = (moviePromo) => ({
   type: ActionType.LOAD_MOVIE_PROMO,
   moviePromo,
 });
+
+export const enableMoviePromo = () => ({
+  type: ActionType.ENABLE_MOVIE_PROMO,
+});
+

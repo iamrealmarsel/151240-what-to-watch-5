@@ -18,7 +18,7 @@ const store = createStore(
 
 Promise.all([
   store.dispatch(fetchMovies()),
-  store.dispatch(fetchMoviePromo()),
+  // store.dispatch(fetchMoviePromo()),
 ])
 .then(() => {
   ReactDOM.render(

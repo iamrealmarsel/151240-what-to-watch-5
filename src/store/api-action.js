@@ -46,6 +46,6 @@ export const fetchMoviePromo = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
     .then(({data}) => {
       const moviePromo = adaptMovieToClient(data);
-      dispatch(loadMoviePromo(moviePromo));
+      return dispatch(loadMoviePromo(moviePromo));
     })
 );

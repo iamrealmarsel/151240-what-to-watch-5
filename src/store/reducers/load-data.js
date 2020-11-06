@@ -3,8 +3,6 @@ import {ActionType} from 'const';
 
 
 const initialState = {
-  movies: [],
-  moviePromo: {},
   reviews,
 };
 
