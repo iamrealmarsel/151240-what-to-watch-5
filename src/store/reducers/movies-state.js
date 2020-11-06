@@ -34,6 +34,14 @@ const moviesState = (state = initialState, action) => {
           {
             isEnableMoviePromo: true,
           });
+
+    case ActionType.ENABLE_MOVIES:
+      return Object.assign(
+          {},
+          state,
+          {
+            isEnableMovies: true,
+          });
   }
 
   return state;

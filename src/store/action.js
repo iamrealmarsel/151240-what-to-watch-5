@@ -25,3 +25,6 @@ export const enableMoviePromo = () => ({
   type: ActionType.ENABLE_MOVIE_PROMO,
 });
 
+export const enableMovies = () => ({
+  type: ActionType.ENABLE_MOVIES,
+});

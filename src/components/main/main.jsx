@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import GenreList from 'components/genre-list/genre-list';
 import Promo from 'components/promo/promo';
 import MovieListContainer from 'components/movie-list-container/movie-list-container';
-import {fetchMoviePromo} from 'store/api-action';
-import {enableMoviePromo} from 'store/action';
+import {fetchMoviePromo, fetchMovies} from 'store/api-action';
+import {enableMoviePromo, enableMovies} from 'store/action';
 
 
 class Main extends React.PureComponent {
@@ -14,15 +14,19 @@ class Main extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {fetchMoviePromoAction, enableMoviePromoAction} = this.props;
+    const {fetchMoviePromoAction, enableMoviePromoAction, fetchMoviesAction, enableMoviesAction} = this.props;
 
     new Promise((resolve) => {
       resolve(fetchMoviePromoAction());
     }).then(() => enableMoviePromoAction());
+
+    new Promise((resolve) => {
+      resolve(fetchMoviesAction());
+    }).then(() => enableMoviesAction());
   }
 
   render() {
-    const {onMovieCardClick, isEnableMoviePromo} = this.props;
+    const {onMovieCardClick, isEnableMoviePromo, isEnableMovies} = this.props;
 
     return (
       <React.Fragment>
@@ -32,8 +36,10 @@ class Main extends React.PureComponent {
         <div className="page-content">
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
-            <GenreList />
-            <MovieListContainer onMovieCardClick={onMovieCardClick}/>
+
+            {isEnableMovies && <GenreList />}
+            {isEnableMovies && <MovieListContainer onMovieCardClick={onMovieCardClick}/>}
+
           </section>
           <footer className="page-footer">
             <div className="logo">
@@ -57,17 +63,23 @@ class Main extends React.PureComponent {
 Main.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
   fetchMoviePromoAction: PropTypes.func.isRequired,
+  fetchMoviesAction: PropTypes.func.isRequired,
   enableMoviePromoAction: PropTypes.func.isRequired,
+  enableMoviesAction: PropTypes.func.isRequired,
   isEnableMoviePromo: PropTypes.bool.isRequired,
+  isEnableMovies: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({moviesState}) => ({
   isEnableMoviePromo: moviesState.isEnableMoviePromo,
+  isEnableMovies: moviesState.isEnableMovies,
 });
 
 const mapDispatchToProps = {
   fetchMoviePromoAction: fetchMoviePromo,
+  fetchMoviesAction: fetchMovies,
   enableMoviePromoAction: enableMoviePromo,
+  enableMoviesAction: enableMovies,
 };
 
 
