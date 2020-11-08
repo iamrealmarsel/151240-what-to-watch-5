@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Main from '../main/main';
-import SignIn from '../sign-in/sign-in';
-import MyList from '../my-list/my-list';
-import Movie from '../movie/movie';
-import Review from '../review/review';
-import Player from '../player/player';
+import Main from 'components/main/main';
+import SignIn from 'components/sign-in/sign-in';
+import MyList from 'components/my-list/my-list';
+import Movie from 'components/movie/movie';
+import Review from 'components/review/review';
+import Player from 'components/player/player';
 
 
-const App = (props) => {
-  const {reviews} = props;
+const App = () => {
 
   return (
     <BrowserRouter>
@@ -30,7 +28,7 @@ const App = (props) => {
         />
         <Route exact path='/films/:id'
           render={({history, match}) => (
-            <Movie reviews={reviews} match={match}
+            <Movie match={match}
               onMovieCardClick={(id) => history.push(`/films/${id}`)} />
           )}
         />
@@ -45,15 +43,6 @@ const App = (props) => {
       </Switch>
     </BrowserRouter>
   );
-};
-
-App.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    message: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-  })).isRequired
 };
 
 

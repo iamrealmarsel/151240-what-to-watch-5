@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import RatingStars from '../rating-stars/rating-stars';
-import {generateId} from '../../utils.js';
 import {connect} from 'react-redux';
-import {moviesPropTypes} from '../prop-types';
-import withReviewState from '../../hocs/with-review-state';
+import RatingStars from 'components/rating-stars/rating-stars';
+import {generateId} from 'utils.js';
+import {moviesPropTypes} from 'store/prop-types';
+import withReviewState from 'hocs/with-review-state';
 
 
 const Review = (props) => {
@@ -93,8 +93,8 @@ Review.propTypes = {
   onStarClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
+const mapStateToProps = ({data}) => ({
+  movies: data.movies,
 });
 
 

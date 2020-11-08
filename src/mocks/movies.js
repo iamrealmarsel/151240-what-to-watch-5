@@ -1,4 +1,4 @@
-import {generateId, convertMinutesToHoursAndMinutes} from '../utils.js';
+import {generateId} from 'utils.js';
 
 
 const MOVIE_COUNT = 60;
@@ -108,11 +108,6 @@ const RATING_TEXT = [
   `Awesome`,
 ];
 
-const RuntimeMinutes = {
-  MIN: 60,
-  MAX: 180
-};
-
 const ReleaseYear = {
   MIN: 1960,
   MAX: 2020,
@@ -181,7 +176,6 @@ const generateRandomDate = (start, end) => {
 
 const generateMovie = (id) => {
   return {
-    // id: generateId(),
     id,
     title: getRandomElement(TITLES),
     genre: getRandomElement(GENRES),
@@ -197,10 +191,10 @@ const generateMovie = (id) => {
     director: DIRECTOR,
     starringShort: STARRING_SHORT,
     starring: STARRING,
-    runtime: convertMinutesToHoursAndMinutes(getRandomInteger(RuntimeMinutes.MIN, RuntimeMinutes.MAX)),
     myList: Boolean(getRandomInteger()),
   };
 };
+
 
 const generateReview = () => {
   return {

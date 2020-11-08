@@ -1,16 +1,14 @@
-import {movies, reviews} from '../mocks/movies';
-import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from '../const';
+import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from 'const';
 
 
 const initialState = {
   currentGenre: ALL_GENRES,
-  promoMovie: movies[0],
   visibleMoviesCount: MOVIE_COUNT_STEP,
-  movies,
-  reviews,
+  isEnableMovies: false,
+  isEnableMoviePromo: false,
 };
 
-const reducer = (state = initialState, action) => {
+const moviesState = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return Object.assign(
@@ -28,10 +26,26 @@ const reducer = (state = initialState, action) => {
           {
             visibleMoviesCount: action.visibleMoviesCount,
           });
+
+    case ActionType.ENABLE_MOVIE_PROMO:
+      return Object.assign(
+          {},
+          state,
+          {
+            isEnableMoviePromo: true,
+          });
+
+    case ActionType.ENABLE_MOVIES:
+      return Object.assign(
+          {},
+          state,
+          {
+            isEnableMovies: true,
+          });
   }
 
   return state;
 };
 
 
-export default reducer;
+export default moviesState;

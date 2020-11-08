@@ -23,7 +23,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    modules: ['node_modules', path.resolve(__dirname, 'src')],
+    extensions: ['.js', '.jsx'],
   },
   devtool: 'source-map',
 };

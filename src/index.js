@@ -1,20 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import App from './components/app/app';
-import {reviews} from './mocks/movies';
-import reducer from "./store/reducer";
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import {createAPI} from 'services/api';
+import App from 'components/app/app';
+import rootReducer from 'store/root-reducer';
 
 
+const api = createAPI();
 const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    rootReducer,
+    applyMiddleware(thunk.withExtraArgument(api))
 );
 
 ReactDOM.render(
     <Provider store={store}>
-      <App reviews={reviews} />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

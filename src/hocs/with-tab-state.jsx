@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tab} from '../const';
+import {Tab} from 'const';
 
 
 const withTabState = (Component) => {

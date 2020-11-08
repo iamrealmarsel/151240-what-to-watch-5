@@ -2,42 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import MovieList from '../movie-list/movie-list';
-import {ALIKE_MOVIE_COUNT} from '../../const';
-import {moviesPropTypes, reviewsPropTypes} from '../prop-types';
-import Tabs from '../tabs/tabs';
+import MovieList from 'components/movie-list/movie-list';
+import {moviesPropTypes, reviewsPropTypes} from 'store/prop-types';
+import Tabs from 'components/tabs/tabs';
+import {getAlikeMovies} from 'store/selector';
 
-
-const getAlikeMovies = (movies, currentMovie) => {
-  const totalAlikeMovies =
-    movies.filter((movie) => movie.id !== currentMovie.id && movie.genre === currentMovie.genre);
-
-  if (totalAlikeMovies.length <= 4) {
-    return totalAlikeMovies;
-  }
-
-  let alikeMovies = [];
-
-  for (let i = 0; i < ALIKE_MOVIE_COUNT; i++) {
-    alikeMovies.push(totalAlikeMovies[i]);
-  }
-
-  return alikeMovies;
-};
 
 const Movie = (props) => {
   const {movies, reviews, onMovieCardClick, match} = props;
   const id = Number(match.params.id);
   const currentMovie = movies.find((movie) => movie.id === id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
-  const {title, genre, releaseYear} = currentMovie;
+  const {title, genre, releaseYear, poster, background} = currentMovie;
 
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={background} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -88,7 +71,7 @@ const Movie = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster"
+              <img src={poster} alt="The Grand Budapest Hotel poster"
                 width="218" height="327" />
             </div>
 
@@ -134,9 +117,9 @@ Movie.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-  reviews: state.reviews,
+const mapStateToProps = ({data}) => ({
+  movies: data.movies,
+  reviews: data.reviews,
 });
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {changeGenre} from '../../store/action';
-import {getGenres} from '../../store/selector';
+import {changeGenre} from 'store/action';
+import {getGenres} from 'store/selector';
 
 
 const GenreList = (props) => {
@@ -42,9 +42,9 @@ GenreList.propTypes = {
   genres: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentGenre: state.currentGenre,
-  genres: getGenres(state.movies),
+const mapStateToProps = ({moviesState, data}) => ({
+  currentGenre: moviesState.currentGenre,
+  genres: getGenres(data.movies),
 });
 
 const mapDispatchToProps = {
