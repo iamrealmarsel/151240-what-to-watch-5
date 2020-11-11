@@ -4,8 +4,7 @@ import {ALL_GENRES, ActionType, MOVIE_COUNT_STEP} from 'const';
 const initialState = {
   currentGenre: ALL_GENRES,
   visibleMoviesCount: MOVIE_COUNT_STEP,
-  isEnableMovies: false,
-  isEnableMoviePromo: false,
+  isApplicationReady: false,
 };
 
 const moviesState = (state = initialState, action) => {
@@ -27,20 +26,12 @@ const moviesState = (state = initialState, action) => {
             visibleMoviesCount: action.visibleMoviesCount,
           });
 
-    case ActionType.ENABLE_MOVIE_PROMO:
+    case ActionType.ENABLE_APPLICATION:
       return Object.assign(
           {},
           state,
           {
-            isEnableMoviePromo: true,
-          });
-
-    case ActionType.ENABLE_MOVIES:
-      return Object.assign(
-          {},
-          state,
-          {
-            isEnableMovies: true,
+            isApplicationReady: true,
           });
   }
 

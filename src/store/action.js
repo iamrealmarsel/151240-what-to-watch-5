@@ -21,10 +21,6 @@ export const loadMoviePromo = (moviePromo) => ({
   moviePromo,
 });
 
-export const enableMoviePromo = () => ({
-  type: ActionType.ENABLE_MOVIE_PROMO,
-});
-
-export const enableMovies = () => ({
-  type: ActionType.ENABLE_MOVIES,
+export const enableApplication = () => ({
+  type: ActionType.ENABLE_APPLICATION,
 });

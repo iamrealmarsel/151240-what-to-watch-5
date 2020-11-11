@@ -1,4 +1,5 @@
-import {loadMovies, loadMoviePromo} from 'store/action';
+import {loadMovies, loadMoviePromo, enableApplication} from 'store/action';
+
 
 const adaptMovieToClient = (movie) => {
   const adaptedMovie = Object.assign(
@@ -34,18 +35,25 @@ const adaptMovieToClient = (movie) => {
   return adaptedMovie;
 };
 
-export const fetchMovies = () => (dispatch, _getState, api) => (
-  api.get(`/films`)
+const fetchMovies = (dispatch, api) => {
+  return api.get(`/films`)
     .then(({data}) => {
       const movies = data.map((movie) => adaptMovieToClient(movie));
       dispatch(loadMovies(movies));
-    })
-);
+    });
+};
 
-export const fetchMoviePromo = () => (dispatch, _getState, api) => (
-  api.get(`/films/promo`)
+const fetchMoviePromo = (dispatch, api) => {
+  return api.get(`/films/promo`)
     .then(({data}) => {
       const moviePromo = adaptMovieToClient(data);
-      return dispatch(loadMoviePromo(moviePromo));
-    })
-);
+      dispatch(loadMoviePromo(moviePromo));
+    });
+};
+
+export const init = () => (dispatch, _getState, api) => {
+  Promise.all([
+    fetchMovies(dispatch, api),
+    fetchMoviePromo(dispatch, api),
+  ]).then(() => dispatch(enableApplication()));
+};
