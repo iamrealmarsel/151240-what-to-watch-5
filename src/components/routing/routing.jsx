@@ -16,10 +16,9 @@ const Routing = (props) => {
   return (
     <Router history={browserHistory}>
       <Switch>
-        <Route exact path='/'
-          render={({history}) => (
-            <Main onMovieCardClick={(id) => history.push(`/films/${id}`)} />
-          )}
+        <Route exact path='/' render={({history}) => (
+          <Main onMovieCardClick={(id) => history.push(`/films/${id}`)} />
+        )}
         />
         <Route exact path='/login'>
           { props.isAuthenticated
@@ -30,16 +29,13 @@ const Routing = (props) => {
         <PrivateRouting exact path='/mylist' render={({history}) => (
           <MyList onMovieCardClick={(id) => history.push(`/films/${id}`)} />
         )} />
-        <Route exact path='/films/:id'
-          render={({history, match}) => (
-            <Movie match={match}
-              onMovieCardClick={(id) => history.push(`/films/${id}`)} />
-          )}
+        <Route exact path='/films/:id' render={({history, match}) => (
+          <Movie match={match} onMovieCardClick={(id) => history.push(`/films/${id}`)} />
+        )}
         />
-        <PrivateRouting exact path='/films/:id/review'
-          render={({match}) => (
-            <Review match={match}/>
-          )}
+        <PrivateRouting exact path='/films/:id/review' render={({match}) => (
+          <Review match={match}/>
+        )}
         />
         <Route exact path='/player/:id'>
           <Player />

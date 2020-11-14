@@ -8,6 +8,7 @@ import Header from 'components/header/header';
 import {moviesPropTypes, reviewsPropTypes} from 'store/prop-types';
 import {getAlikeMovies, getMovieByID} from 'store/selector';
 import Footer from 'components/footer/footer';
+import browserHistory from 'browser-history';
 
 
 const Movie = (props) => {
@@ -16,6 +17,10 @@ const Movie = (props) => {
   const currentMovie = getMovieByID(movies, id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
   const {title, genre, releaseYear, poster, background} = currentMovie;
+
+  const handleButtonPlayClick = () => {
+    browserHistory.push(`/player/${id}`);
+  };
 
   return (
     <React.Fragment>
@@ -38,7 +43,7 @@ const Movie = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button onClick={handleButtonPlayClick} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
