@@ -70,3 +70,13 @@ export const convertRatingToText = (rating) => {
 
   return null;
 };
+
+export const getMyList = (movies) => {
+  return movies.filter((movie) => movie.myList);
+};
+
+export const getMovieByID = (movies, id) => {
+  return movies.find((movie) => movie.id === id);
+};
+
+

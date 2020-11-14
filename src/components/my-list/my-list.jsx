@@ -6,15 +6,11 @@ import Header from 'components/header/header';
 import {moviesPropTypes} from 'store/prop-types';
 import {Title} from 'const';
 import Footer from 'components/footer/footer';
+import {getMyList} from 'store/selector';
 
-
-const getMyList = (movies) => {
-  return movies.filter((movie) => movie.myList);
-};
 
 const MyList = (props) => {
   const {movies, onMovieCardClick} = props;
-  const myList = getMyList(movies);
 
   return (
     <div className="user-page">
@@ -24,7 +20,7 @@ const MyList = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <MovieList movies={myList} onMovieCardClick={onMovieCardClick} />
+        <MovieList movies={movies} onMovieCardClick={onMovieCardClick} />
       </section>
 
       <Footer />
@@ -39,7 +35,7 @@ MyList.propTypes = {
 };
 
 const mapStateToProps = ({load}) => ({
-  movies: load.movies,
+  movies: getMyList(load.movies),
 });
 
 

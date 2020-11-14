@@ -6,14 +6,14 @@ import MovieList from 'components/movie-list/movie-list';
 import Tabs from 'components/tabs/tabs';
 import Header from 'components/header/header';
 import {moviesPropTypes, reviewsPropTypes} from 'store/prop-types';
-import {getAlikeMovies} from 'store/selector';
+import {getAlikeMovies, getMovieByID} from 'store/selector';
 import Footer from 'components/footer/footer';
 
 
 const Movie = (props) => {
   const {movies, reviews, onMovieCardClick, match} = props;
   const id = Number(match.params.id);
-  const currentMovie = movies.find((movie) => movie.id === id);
+  const currentMovie = getMovieByID(movies, id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
   const {title, genre, releaseYear, poster, background} = currentMovie;
 

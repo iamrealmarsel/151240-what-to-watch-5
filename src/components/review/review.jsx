@@ -6,12 +6,13 @@ import Header from 'components/header/header';
 import {generateId} from 'utils.js';
 import {moviesPropTypes} from 'store/prop-types';
 import withReviewState from 'hocs/with-review-state';
+import {getMovieByID} from 'store/selector';
 
 
 const Review = (props) => {
   const {ratingStarsChecks, onTextChange, onStarClick, match, movies} = props;
   const id = Number(match.params.id);
-  const currentMovie = movies.find((movie) => movie.id === id);
+  const currentMovie = getMovieByID(movies, id);
   const {title, background, poster} = currentMovie;
 
   return (
