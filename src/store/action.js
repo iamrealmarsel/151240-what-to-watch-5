@@ -24,3 +24,8 @@ export const loadMoviePromo = (moviePromo) => ({
 export const enableApplication = () => ({
   type: ActionType.ENABLE_APPLICATION,
 });
+
+export const enableAuth = (status) => ({
+  type: ActionType.ENABLE_AUTH,
+  status
+});

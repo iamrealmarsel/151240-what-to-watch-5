@@ -1,5 +1,5 @@
-import {loadMovies, loadMoviePromo, enableApplication} from 'store/action';
-
+import {loadMovies, loadMoviePromo, enableApplication, enableAuth} from 'store/action';
+import browserHistory from 'browser-history';
 
 const adaptMovieToClient = (movie) => {
   const adaptedMovie = Object.assign(
@@ -40,7 +40,8 @@ const fetchMovies = (dispatch, api) => {
     .then(({data}) => {
       const movies = data.map((movie) => adaptMovieToClient(movie));
       dispatch(loadMovies(movies));
-    });
+    })
+    .catch(() => {});
 };
 
 const fetchMoviePromo = (dispatch, api) => {
@@ -48,12 +49,26 @@ const fetchMoviePromo = (dispatch, api) => {
     .then(({data}) => {
       const moviePromo = adaptMovieToClient(data);
       dispatch(loadMoviePromo(moviePromo));
-    });
+    })
+    .catch(() => {});
+};
+
+const checkAuth = (dispatch, api) => {
+  return api.get(`/login`)
+    .then(() => dispatch(enableAuth(true)))
+    .catch(() => {});
 };
 
 export const init = () => (dispatch, _getState, api) => {
   Promise.all([
     fetchMovies(dispatch, api),
     fetchMoviePromo(dispatch, api),
+    checkAuth(dispatch, api)
   ]).then(() => dispatch(enableApplication()));
+};
+
+export const login = ({email, password}) => (dispatch, _getState, api) => {
+  api.post(`/login`, {email, password})
+    .then(() => dispatch(enableAuth(true)))
+    .then(() => browserHistory.push(`/`));
 };
