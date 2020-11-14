@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
-import moviesState from 'store/reducers/movies-state';
-import loadData from 'store/reducers/load-data';
+import movies from 'store/reducers/movies';
+import load from 'store/reducers/load';
 import user from 'store/reducers/user';
 
 
 export default combineReducers({
-  data: loadData,
-  moviesState,
+  load,
+  movies,
   user,
 });

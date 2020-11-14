@@ -1,5 +1,8 @@
-import {loadMovies, loadMoviePromo, enableApplication, enableAuth} from 'store/action';
+import {loadMovies, loadMoviePromo} from 'store/actions/load';
+import {enableApplication} from 'store/actions/movies';
+import {enableAuth} from 'store/actions/user';
 import browserHistory from 'browser-history';
+
 
 const adaptMovieToClient = (movie) => {
   const adaptedMovie = Object.assign(

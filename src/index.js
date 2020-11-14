@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from 'redux-thunk';
-import {createAPI} from 'services/axios';
+import {createAPI} from 'axios.js';
 import App from 'components/app/app';
 import rootReducer from 'store/root-reducer';
 

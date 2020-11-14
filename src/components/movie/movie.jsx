@@ -94,9 +94,9 @@ Movie.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({data}) => ({
-  movies: data.movies,
-  reviews: data.reviews,
+const mapStateToProps = ({load}) => ({
+  movies: load.movies,
+  reviews: load.reviews,
 });
 
 

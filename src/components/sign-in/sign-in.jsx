@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {login} from 'store/api-action';
+import {login} from 'store/actions/async';
 import Header from 'components/header/header';
-import {Title} from 'const';
 import Footer from 'components/footer/footer';
+import {Title} from 'const';
 
 
 const SignIn = (props) => {

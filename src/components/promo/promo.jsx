@@ -53,8 +53,8 @@ Promo.propTypes = {
   moviePromo: moviePropTypes,
 };
 
-const mapStateToProps = ({data}) => ({
-  moviePromo: data.moviePromo,
+const mapStateToProps = ({load}) => ({
+  moviePromo: load.moviePromo,
 });
 
 

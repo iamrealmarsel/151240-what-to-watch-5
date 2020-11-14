@@ -68,8 +68,8 @@ Review.propTypes = {
   onStarClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({data}) => ({
-  movies: data.movies,
+const mapStateToProps = ({load}) => ({
+  movies: load.movies,
 });
 
 

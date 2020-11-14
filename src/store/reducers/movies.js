@@ -7,7 +7,7 @@ const initialState = {
   isApplicationReady: false,
 };
 
-const moviesState = (state = initialState, action) => {
+const movies = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return Object.assign(
@@ -39,4 +39,4 @@ const moviesState = (state = initialState, action) => {
 };
 
 
-export default moviesState;
+export default movies;

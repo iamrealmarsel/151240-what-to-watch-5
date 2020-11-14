@@ -6,7 +6,7 @@ import MovieList from 'components/movie-list/movie-list';
 import {MOVIE_COUNT_STEP} from 'const';
 import {moviesPropTypes} from 'store/prop-types';
 import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from 'store/selector';
-import {showMoreMovies} from 'store/action';
+import {showMoreMovies} from 'store/actions/movies';
 
 
 const MovieListContainer = (props) => {
@@ -33,9 +33,9 @@ MovieListContainer.propTypes = {
   showMoreMoviesAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({data, moviesState}) => ({
-  visibleMoviesCount: moviesState.visibleMoviesCount,
-  movies: getMoviesByGenre(data.movies, moviesState.currentGenre),
+const mapStateToProps = ({load, movies}) => ({
+  visibleMoviesCount: movies.visibleMoviesCount,
+  movies: getMoviesByGenre(load.movies, movies.currentGenre),
 });
 
 const mapDispatchToProps = {

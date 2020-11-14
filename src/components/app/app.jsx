@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Routing from 'components/routing/routing';
-import {init} from 'store/api-action';
+import {init} from 'store/actions/async';
 
 
 class App extends React.PureComponent {
@@ -20,8 +20,8 @@ App.propTypes = {
   initAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({moviesState}) => ({
-  isApplicationReady: moviesState.isApplicationReady,
+const mapStateToProps = ({movies}) => ({
+  isApplicationReady: movies.isApplicationReady,
 });
 
 const mapDispatchToProps = {
