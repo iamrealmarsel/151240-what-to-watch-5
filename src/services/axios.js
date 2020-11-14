@@ -11,12 +11,5 @@ export const createAPI = () => {
     withCredentials: true,
   });
 
-  instance.interceptors.response.use(
-      // (response) => console.log(response),
-      // (error) => {
-      //   throw error;
-      // }
-  );
-
   return instance;
 };

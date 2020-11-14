@@ -35,8 +35,8 @@ const adaptMovieToClient = (movie) => {
   return adaptedMovie;
 };
 
-const fetchMovies = (dispatch, api) => {
-  return api.get(`/films`)
+const fetchMovies = (dispatch, axios) => {
+  return axios.get(`/films`)
     .then(({data}) => {
       const movies = data.map((movie) => adaptMovieToClient(movie));
       dispatch(loadMovies(movies));
@@ -44,8 +44,8 @@ const fetchMovies = (dispatch, api) => {
     .catch(() => {});
 };
 
-const fetchMoviePromo = (dispatch, api) => {
-  return api.get(`/films/promo`)
+const fetchMoviePromo = (dispatch, axios) => {
+  return axios.get(`/films/promo`)
     .then(({data}) => {
       const moviePromo = adaptMovieToClient(data);
       dispatch(loadMoviePromo(moviePromo));
@@ -53,22 +53,22 @@ const fetchMoviePromo = (dispatch, api) => {
     .catch(() => {});
 };
 
-const checkAuth = (dispatch, api) => {
-  return api.get(`/login`)
+const checkAuth = (dispatch, axios) => {
+  return axios.get(`/login`)
     .then(() => dispatch(enableAuth(true)))
     .catch(() => {});
 };
 
-export const init = () => (dispatch, _getState, api) => {
+export const init = () => (dispatch, _getState, axios) => {
   Promise.all([
-    fetchMovies(dispatch, api),
-    fetchMoviePromo(dispatch, api),
-    checkAuth(dispatch, api)
+    fetchMovies(dispatch, axios),
+    fetchMoviePromo(dispatch, axios),
+    checkAuth(dispatch, axios)
   ]).then(() => dispatch(enableApplication()));
 };
 
-export const login = ({email, password}) => (dispatch, _getState, api) => {
-  api.post(`/login`, {email, password})
+export const login = ({email, password}) => (dispatch, _getState, axios) => {
+  axios.post(`/login`, {email, password})
     .then(() => dispatch(enableAuth(true)))
     .then(() => browserHistory.push(`/`));
 };
