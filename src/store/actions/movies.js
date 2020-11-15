@@ -14,3 +14,8 @@ export const showMoreMovies = (visibleMoviesCount) => ({
 export const enableApplication = () => ({
   type: ActionType.ENABLE_APPLICATION,
 });
+
+export const displayСomments = (id) => ({
+  type: ActionType.DISPLAY_СOMMENTS,
+  id,
+});

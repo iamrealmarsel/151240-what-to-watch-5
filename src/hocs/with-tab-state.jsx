@@ -3,6 +3,7 @@ import {Tab} from 'const';
 
 
 const withTabState = (Component) => {
+
   class WithTabState extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -14,8 +15,10 @@ const withTabState = (Component) => {
 
     handleTabClick(event) {
       event.preventDefault();
+      const currentTab = event.currentTarget.dataset.tab;
+
       this.setState({
-        tab: event.currentTarget.dataset.tab,
+        tab: currentTab,
       });
     }
 

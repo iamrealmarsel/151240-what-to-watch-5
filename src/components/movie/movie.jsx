@@ -5,14 +5,14 @@ import {connect} from 'react-redux';
 import MovieList from 'components/movie-list/movie-list';
 import Tabs from 'components/tabs/tabs';
 import Header from 'components/header/header';
-import {moviesPropTypes, reviewsPropTypes} from 'store/prop-types';
+import {moviesPropTypes} from 'store/prop-types';
 import {getAlikeMovies, getMovieByID} from 'store/selector';
 import Footer from 'components/footer/footer';
 import browserHistory from 'browser-history';
 
 
 const Movie = (props) => {
-  const {movies, reviews, onMovieCardClick, match} = props;
+  const {movies, onMovieCardClick, match} = props;
   const id = Number(match.params.id);
   const currentMovie = getMovieByID(movies, id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
@@ -70,7 +70,7 @@ const Movie = (props) => {
 
             <div className="movie-card__desc">
 
-              <Tabs movie={currentMovie} reviews={reviews} />
+              <Tabs movie={currentMovie} />
 
             </div>
 
@@ -94,14 +94,12 @@ const Movie = (props) => {
 
 Movie.propTypes = {
   movies: moviesPropTypes,
-  reviews: reviewsPropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = ({load}) => ({
   movies: load.movies,
-  reviews: load.reviews,
 });
 
 
