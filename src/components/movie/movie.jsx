@@ -3,17 +3,24 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import MovieList from 'components/movie-list/movie-list';
-import {moviesPropTypes, reviewsPropTypes} from 'store/prop-types';
 import Tabs from 'components/tabs/tabs';
-import {getAlikeMovies} from 'store/selector';
+import Header from 'components/header/header';
+import {moviesPropTypes, reviewsPropTypes} from 'store/prop-types';
+import {getAlikeMovies, getMovieByID} from 'store/selector';
+import Footer from 'components/footer/footer';
+import browserHistory from 'browser-history';
 
 
 const Movie = (props) => {
   const {movies, reviews, onMovieCardClick, match} = props;
   const id = Number(match.params.id);
-  const currentMovie = movies.find((movie) => movie.id === id);
+  const currentMovie = getMovieByID(movies, id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
   const {title, genre, releaseYear, poster, background} = currentMovie;
+
+  const handleButtonPlayClick = () => {
+    browserHistory.push(`/player/${id}`);
+  };
 
   return (
     <React.Fragment>
@@ -25,21 +32,7 @@ const Movie = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
+          <Header />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -50,7 +43,7 @@ const Movie = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button onClick={handleButtonPlayClick} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -92,19 +85,8 @@ const Movie = (props) => {
           <MovieList movies={alikeMovies} onMovieCardClick={onMovieCardClick} />
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+        <Footer />
 
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
       </div>
     </React.Fragment>
   );
@@ -117,9 +99,9 @@ Movie.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({data}) => ({
-  movies: data.movies,
-  reviews: data.reviews,
+const mapStateToProps = ({load}) => ({
+  movies: load.movies,
+  reviews: load.reviews,
 });
 
 

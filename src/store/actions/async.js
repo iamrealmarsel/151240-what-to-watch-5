@@ -1,4 +1,8 @@
-import {loadMovies, loadMoviePromo} from 'store/action';
+import {loadMovies, loadMoviePromo} from 'store/actions/load';
+import {enableApplication} from 'store/actions/movies';
+import {enableAuth} from 'store/actions/user';
+import browserHistory from 'browser-history';
+
 
 const adaptMovieToClient = (movie) => {
   const adaptedMovie = Object.assign(
@@ -34,18 +38,40 @@ const adaptMovieToClient = (movie) => {
   return adaptedMovie;
 };
 
-export const fetchMovies = () => (dispatch, _getState, api) => (
-  api.get(`/films`)
+const fetchMovies = (dispatch, axios) => {
+  return axios.get(`/films`)
     .then(({data}) => {
       const movies = data.map((movie) => adaptMovieToClient(movie));
       dispatch(loadMovies(movies));
     })
-);
+    .catch(() => {});
+};
 
-export const fetchMoviePromo = () => (dispatch, _getState, api) => (
-  api.get(`/films/promo`)
+const fetchMoviePromo = (dispatch, axios) => {
+  return axios.get(`/films/promo`)
     .then(({data}) => {
       const moviePromo = adaptMovieToClient(data);
-      return dispatch(loadMoviePromo(moviePromo));
+      dispatch(loadMoviePromo(moviePromo));
     })
-);
+    .catch(() => {});
+};
+
+const checkAuth = (dispatch, axios) => {
+  return axios.get(`/login`)
+    .then(() => dispatch(enableAuth(true)))
+    .catch(() => {});
+};
+
+export const init = () => (dispatch, _getState, axios) => {
+  Promise.all([
+    fetchMovies(dispatch, axios),
+    fetchMoviePromo(dispatch, axios),
+    checkAuth(dispatch, axios)
+  ]).then(() => dispatch(enableApplication()));
+};
+
+export const login = ({email, password}) => (dispatch, _getState, axios) => {
+  axios.post(`/login`, {email, password})
+    .then(() => dispatch(enableAuth(true)))
+    .then(() => browserHistory.push(`/`));
+};

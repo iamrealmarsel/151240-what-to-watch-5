@@ -6,7 +6,7 @@ const initialState = {
   reviews,
 };
 
-const loadData = (state = initialState, action) => {
+const load = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_MOVIES:
       return Object.assign(
@@ -29,4 +29,4 @@ const loadData = (state = initialState, action) => {
 };
 
 
-export default loadData;
+export default load;

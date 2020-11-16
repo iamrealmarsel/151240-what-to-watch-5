@@ -5,8 +5,8 @@ export const ActionType = {
   SHOW_MORE_MOVIES: `SHOW_MORE_MOVIES`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_MOVIE_PROMO: `LOAD_MOVIE_PROMO`,
-  ENABLE_MOVIE_PROMO: `ENABLE_MOVIE_PROMO`,
-  ENABLE_MOVIES: `ENABLE_MOVIES`,
+  ENABLE_APPLICATION: `ENABLE_APPLICATION`,
+  ENABLE_AUTH: `ENABLE_AUTH`,
 };
 
 export const MOVIE_COUNT_STEP = 8;
@@ -26,3 +26,10 @@ export const RatingText = {
   VERY_GOOD: `Very good`,
   AWESOME: `Awesome`,
 };
+
+export const Title = {
+  SIGN_IN: `Sign in`,
+  MY_LIST: `My list`,
+};
+
+export const NO_AUTH_CODE = 401;

@@ -1,10 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {moviePropTypes} from 'store/prop-types';
+import Header from 'components/header/header';
+import browserHistory from 'browser-history';
 
 
 const Promo = (props) => {
-  const {title, genre, releaseYear, background, poster} = props.moviePromo;
+  const {title, genre, releaseYear, background, poster, id} = props.moviePromo;
+
+  const handleButtonPlayClick = () => {
+    browserHistory.push(`/player/${id}`);
+  };
 
   return (
     <section className="movie-card">
@@ -12,20 +18,9 @@ const Promo = (props) => {
         <img src={background} alt="The Grand Budapest Hotel" />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
-      </header>
+
+      <Header />
+
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
@@ -39,7 +34,7 @@ const Promo = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <button onClick={handleButtonPlayClick} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -63,8 +58,8 @@ Promo.propTypes = {
   moviePromo: moviePropTypes,
 };
 
-const mapStateToProps = ({data}) => ({
-  moviePromo: data.moviePromo,
+const mapStateToProps = ({load}) => ({
+  moviePromo: load.moviePromo,
 });
 
 
