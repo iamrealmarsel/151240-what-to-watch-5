@@ -1,5 +1,5 @@
-import {loadMovies, loadMoviePromo} from 'store/actions/load';
-import {enableApplication} from 'store/actions/movies';
+import {loadMovies, loadMoviePromo, loadComments} from 'store/actions/load';
+import {enableApplication, displayСomments} from 'store/actions/movies';
 import {enableAuth} from 'store/actions/user';
 import browserHistory from 'browser-history';
 
@@ -20,6 +20,7 @@ const adaptMovieToClient = (movie) => {
         runtime: movie.run_time,
         releaseYear: movie.released,
         myList: movie.is_favorite,
+        comments: false,
       }
   );
 
@@ -36,6 +37,23 @@ const adaptMovieToClient = (movie) => {
   delete adaptedMovie.is_favorite;
 
   return adaptedMovie;
+};
+
+const adaptCommentToClient = (comment) => {
+  const adaptedComment = Object.assign(
+      {},
+      comment,
+      {
+        author: comment.user.name,
+        authorID: comment.user.id,
+        message: comment.comment,
+      }
+  );
+
+  delete adaptedComment.user;
+  delete adaptedComment.comment;
+
+  return adaptedComment;
 };
 
 const fetchMovies = (dispatch, axios) => {
@@ -67,11 +85,36 @@ export const init = () => (dispatch, _getState, axios) => {
     fetchMovies(dispatch, axios),
     fetchMoviePromo(dispatch, axios),
     checkAuth(dispatch, axios)
-  ]).then(() => dispatch(enableApplication()));
+  ])
+    .then(() => dispatch(enableApplication()))
+    .catch(() => {});
 };
 
 export const login = ({email, password}) => (dispatch, _getState, axios) => {
   axios.post(`/login`, {email, password})
     .then(() => dispatch(enableAuth(true)))
-    .then(() => browserHistory.push(`/`));
+    .then(() => browserHistory.push(`/`))
+    .catch(() => {});
 };
+
+export const fetchComments = (id) => (dispatch, _getState, axios) => {
+  axios.get(`/comments/${id}`)
+    .then(({data}) => {
+      const comments = data.map((comment) => adaptCommentToClient(comment));
+      dispatch(loadComments(id, comments));
+      dispatch(displayСomments(comments));
+    })
+    .catch(() => {});
+};
+
+export const postComment = (rating, text, id) => (dispatch, _getState, axios) => {
+  return axios.post(`/comments/${id}`, {rating, comment: text})
+    .then(() => {
+      dispatch(fetchComments(id));
+      browserHistory.push(`/films/${id}`);
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+

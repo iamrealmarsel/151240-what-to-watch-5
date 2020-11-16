@@ -1,15 +1,18 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {moviePropTypes, reviewsPropTypes} from 'store/prop-types';
+import {moviePropTypes} from 'store/prop-types';
 import {Tab} from 'const';
 import TabsOverview from 'components/tabs-overview/tabs-overview';
 import TabsDetails from 'components/tabs-details/tabs-details';
 import TabsReviews from 'components/tabs-reviews/tabs-reviews';
 import withTabState from 'hocs/with-tab-state';
+import {fetchComments} from 'store/actions/async';
 
 
 const Tabs = (props) => {
-  const {movie, reviews, onTabClick, tab} = props;
+  const {movie, onTabClick, tab, fetchCommentsAction} = props;
+  const {id, comments} = movie;
   let tabContent = null;
 
   switch (tab) {
@@ -20,7 +23,11 @@ const Tabs = (props) => {
       tabContent = <TabsDetails movie={movie} />;
       break;
     case Tab.REVIEWS:
-      tabContent = <TabsReviews reviews={reviews} />;
+      if (comments) {
+        tabContent = <TabsReviews reviews={comments}/>;
+      } else {
+        fetchCommentsAction(id);
+      }
       break;
   }
 
@@ -52,10 +59,18 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   movie: moviePropTypes,
-  reviews: reviewsPropTypes,
   onTabClick: PropTypes.func.isRequired,
   tab: PropTypes.string.isRequired,
+  fetchCommentsAction: PropTypes.func.isRequired,
 };
 
+const mapDispatchToProps = {
+  fetchCommentsAction: fetchComments,
+};
 
-export default withTabState(Tabs);
+const mapStateToProps = ({movies}) => ({
+  commentsCheck: movies.commentsCheck,
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTabState(Tabs));

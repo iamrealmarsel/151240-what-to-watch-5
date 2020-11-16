@@ -1,4 +1,5 @@
 import {ALL_GENRES, ALIKE_MOVIE_COUNT, RatingText} from 'const';
+import moment from 'moment';
 
 
 export const getMoviesByGenre = (movies, genre) => {
@@ -79,4 +80,7 @@ export const getMovieByID = (movies, id) => {
   return movies.find((movie) => movie.id === id);
 };
 
+export const formatDate = (date) => {
+  return moment(date).format(`MMMM D, YYYY`);
+};
 

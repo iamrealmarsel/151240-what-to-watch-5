@@ -1,9 +1,9 @@
-import {reviews} from 'mocks/movies';
 import {ActionType} from 'const';
 
 
 const initialState = {
-  reviews,
+  movies: [],
+  moviePromo: {},
 };
 
 const load = (state = initialState, action) => {
@@ -23,6 +23,13 @@ const load = (state = initialState, action) => {
           {
             moviePromo: action.moviePromo
           });
+
+    case ActionType.LOAD_COMMENTS:
+      const newState = Object.assign({}, state);
+      const index = newState.movies.findIndex((movie) => movie.id === action.id);
+      newState.movies[index].comments = action.comments;
+
+      return newState;
   }
 
   return state;

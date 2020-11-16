@@ -5,6 +5,7 @@ const initialState = {
   currentGenre: ALL_GENRES,
   visibleMoviesCount: MOVIE_COUNT_STEP,
   isApplicationReady: false,
+  commentsCheck: null,
 };
 
 const movies = (state = initialState, action) => {
@@ -32,6 +33,14 @@ const movies = (state = initialState, action) => {
           state,
           {
             isApplicationReady: true,
+          });
+
+    case ActionType.DISPLAY_СOMMENTS:
+      return Object.assign(
+          {},
+          state,
+          {
+            commentsCheck: action.commentsCheck,
           });
   }
 
