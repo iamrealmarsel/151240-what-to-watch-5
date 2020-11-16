@@ -4,8 +4,9 @@
   "private": true,
   "description": "Личный проект «Что посмотреть» от HTML Academy",
   "scripts": {
-    "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint",
+    "test:eslint": "eslint --ext .jsx --ext .js src/",
+    "test:jest": "jest",
+    "test": "npm run eslint && npm run test:jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
@@ -17,7 +18,9 @@
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.18.3",
+    "jest": "25.1.0",
     "react-redux": "7.2.1",
+    "react-test-renderer": "16.12.0",
     "redux": "4.0.5",
     "redux-devtools-extension": "2.13.8",
     "webpack": "4.41.6",
