@@ -5,7 +5,7 @@ const initialState = {
   currentGenre: ALL_GENRES,
   visibleMoviesCount: MOVIE_COUNT_STEP,
   isApplicationReady: false,
-  commentsID: null,
+  commentsCheck: null,
 };
 
 const movies = (state = initialState, action) => {
@@ -40,7 +40,7 @@ const movies = (state = initialState, action) => {
           {},
           state,
           {
-            commentsID: action.id,
+            commentsCheck: action.commentsCheck,
           });
   }
 

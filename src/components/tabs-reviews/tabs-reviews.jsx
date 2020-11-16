@@ -2,6 +2,7 @@ import React from 'react';
 import {reviewsPropTypes} from 'store/prop-types';
 import {formatDate} from 'store/selector';
 
+
 const TabsReviews = (props) => {
   const {reviews} = props;
 

@@ -102,9 +102,19 @@ export const fetchComments = (id) => (dispatch, _getState, axios) => {
     .then(({data}) => {
       const comments = data.map((comment) => adaptCommentToClient(comment));
       dispatch(loadComments(id, comments));
+      dispatch(displayСomments(comments));
     })
-    .then(() => dispatch(displayСomments(id)))
     .catch(() => {});
 };
 
+export const postComment = (rating, text, id) => (dispatch, _getState, axios) => {
+  return axios.post(`/comments/${id}`, {rating, comment: text})
+    .then(() => {
+      dispatch(fetchComments(id));
+      browserHistory.push(`/films/${id}`);
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 

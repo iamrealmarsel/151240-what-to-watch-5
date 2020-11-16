@@ -12,8 +12,7 @@ import {fetchComments} from 'store/actions/async';
 
 const Tabs = (props) => {
   const {movie, onTabClick, tab, fetchCommentsAction} = props;
-  const reviews = movie.comments;
-
+  const {id, comments} = movie;
   let tabContent = null;
 
   switch (tab) {
@@ -24,11 +23,10 @@ const Tabs = (props) => {
       tabContent = <TabsDetails movie={movie} />;
       break;
     case Tab.REVIEWS:
-      if (reviews) {
-        tabContent = <TabsReviews reviews={reviews}/>;
+      if (comments) {
+        tabContent = <TabsReviews reviews={comments}/>;
       } else {
-        fetchCommentsAction(movie.id);
-        tabContent = null;
+        fetchCommentsAction(id);
       }
       break;
   }
@@ -71,7 +69,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = ({movies}) => ({
-  commentsID: movies.commentsID,
+  commentsCheck: movies.commentsCheck,
 });
 
 

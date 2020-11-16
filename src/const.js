@@ -35,3 +35,5 @@ export const Title = {
 };
 
 export const NO_AUTH_CODE = 401;
+
+export const SHAKE_ANIMATION_TIMEOUT = 600;

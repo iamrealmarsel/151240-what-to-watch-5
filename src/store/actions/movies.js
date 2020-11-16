@@ -15,7 +15,7 @@ export const enableApplication = () => ({
   type: ActionType.ENABLE_APPLICATION,
 });
 
-export const displayСomments = (id) => ({
+export const displayСomments = (commentsCheck) => ({
   type: ActionType.DISPLAY_СOMMENTS,
-  id,
+  commentsCheck,
 });

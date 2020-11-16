@@ -7,11 +7,14 @@ import {generateId} from 'utils.js';
 import {moviesPropTypes} from 'store/prop-types';
 import withReviewState from 'hocs/with-review-state';
 import {getMovieByID} from 'store/selector';
+import {postComment} from 'store/actions/async';
 
 
 const Review = (props) => {
-  const {ratingStarsChecks, onTextChange, onStarClick, match, movies} = props;
-  const id = Number(match.params.id);
+  const {
+    ratingStarsChecks, onTextChange, onSubmit, onStarClick,
+    movies, id, disabledButton, disabledTextArea, errorShake
+  } = props;
   const currentMovie = getMovieByID(movies, id);
   const {title, background, poster} = currentMovie;
 
@@ -32,7 +35,7 @@ const Review = (props) => {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form action="" className={`add-review__form ${errorShake ? `shake` : ``} `} onSubmit={onSubmit} >
           <div className="rating">
             <div className="rating__stars">
               {ratingStarsChecks.map((starCheck, index) => (
@@ -47,10 +50,11 @@ const Review = (props) => {
 
           <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
-              onChange={(event) => onTextChange(event.target.value)} >
+              onChange={(event) => onTextChange(event.target.value)}
+              disabled={disabledTextArea} >
             </textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+              <button className="add-review__btn" type="submit" disabled={disabledButton} >Post</button>
             </div>
 
           </div>
@@ -63,15 +67,23 @@ const Review = (props) => {
 
 Review.propTypes = {
   movies: moviesPropTypes,
-  match: PropTypes.object.isRequired,
   ratingStarsChecks: PropTypes.array.isRequired,
   onTextChange: PropTypes.func.isRequired,
   onStarClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  disabledButton: PropTypes.bool.isRequired,
+  disabledTextArea: PropTypes.bool.isRequired,
+  errorShake: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({load}) => ({
   movies: load.movies,
 });
 
+const mapDispatchToProps = {
+  postCommentAction: postComment,
+};
 
-export default connect(mapStateToProps)(withReviewState(Review));
+
+export default connect(mapStateToProps, mapDispatchToProps)(withReviewState(Review));
