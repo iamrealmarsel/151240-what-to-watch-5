@@ -6,7 +6,7 @@
   "scripts": {
     "test:eslint": "eslint --ext .jsx --ext .js src/",
     "test:jest": "jest",
-    "test": "npm run eslint && npm run test:jest",
+    "test": "npm run test:eslint && npm run test:jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
