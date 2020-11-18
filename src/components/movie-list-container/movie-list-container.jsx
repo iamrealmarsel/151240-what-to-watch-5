@@ -43,4 +43,5 @@ const mapDispatchToProps = {
 };
 
 
+export {MovieListContainer};
 export default connect(mapStateToProps, mapDispatchToProps)(MovieListContainer);

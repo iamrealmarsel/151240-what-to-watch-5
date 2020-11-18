@@ -7,7 +7,6 @@ import {generateId} from 'utils.js';
 import {moviesPropTypes} from 'store/prop-types';
 import withReviewState from 'hocs/with-review-state';
 import {getMovieByID} from 'store/selector';
-import {postComment} from 'store/actions/async';
 
 
 const Review = (props) => {
@@ -81,9 +80,6 @@ const mapStateToProps = ({load}) => ({
   movies: load.movies,
 });
 
-const mapDispatchToProps = {
-  postCommentAction: postComment,
-};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(withReviewState(Review));
+export {Review};
+export default connect(mapStateToProps)(withReviewState(Review));

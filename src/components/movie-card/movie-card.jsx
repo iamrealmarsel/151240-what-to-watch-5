@@ -43,4 +43,5 @@ MovieCard.propTypes = {
 };
 
 
+export {MovieCard};
 export default withMovieCardState(MovieCard);

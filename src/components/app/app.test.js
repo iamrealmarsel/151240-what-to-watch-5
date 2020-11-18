@@ -1,14 +1,14 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
 import {App} from "./app";
-import {noop} from "test-mocks";
+import * as mock from "test-mock";
 
 
 test(`render App`, () => {
   const tree = TestRenderer
     .create(
         <App
-          initAction={noop}
+          initAction={mock.noop}
           isApplicationReady={false}
         />
     )

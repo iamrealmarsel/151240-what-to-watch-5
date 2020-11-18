@@ -19,8 +19,6 @@ const PrivateRouting = (props) => {
 
 PrivateRouting.propTypes = {
   render: PropTypes.func.isRequired,
-  exact: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
@@ -29,4 +27,5 @@ const mapStateToProps = ({user}) => ({
 });
 
 
+export {PrivateRouting};
 export default connect(mapStateToProps)(PrivateRouting);
