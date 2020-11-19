@@ -4,6 +4,7 @@ import rootReducer from 'store/root-reducer';
 
 export const store = createStore(rootReducer);
 export const noop = () => {};
+export const VISIBLE_MOVIES_COUNT = 16;
 export const ID = 1;
 export const RATING_STARS = [false, false, true, false, false];
 export const TAB = `details`;
