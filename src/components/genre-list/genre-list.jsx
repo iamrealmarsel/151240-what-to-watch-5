@@ -8,7 +8,7 @@ import {getGenres} from 'store/selector';
 const GenreList = (props) => {
   const {currentGenre, genres, changeGenreAction} = props;
 
-  const handleGenreClick = (genre) => {
+  const handleGenreClick = (event, genre) => {
     event.preventDefault();
     changeGenreAction(genre);
   };
@@ -26,7 +26,7 @@ const GenreList = (props) => {
           }
         >
           <a href="#" className="catalog__genres-link"
-            onClick={() => handleGenreClick(genre)}
+            onClick={(event) => handleGenreClick(event, genre)}
           >
             {genre}
           </a>
