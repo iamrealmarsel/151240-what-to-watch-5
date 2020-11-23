@@ -6,12 +6,13 @@ import {Tab} from 'const';
 import TabsOverview from 'components/tabs-overview/tabs-overview';
 import TabsDetails from 'components/tabs-details/tabs-details';
 import TabsReviews from 'components/tabs-reviews/tabs-reviews';
-import withTabState from 'hocs/with-tab-state';
 import {fetchComments} from 'store/actions/async';
 
 
 const Tabs = (props) => {
-  const {movie, onTabClick, tab, fetchCommentsAction} = props;
+  const [tab, setTab] = React.useState(Tab.OVERVIEW);
+
+  const {movie, fetchCommentsAction} = props;
   const {id, comments} = movie;
   let tabContent = null;
 
@@ -31,22 +32,28 @@ const Tabs = (props) => {
       break;
   }
 
+  const handleTabClick = (event) => {
+    event.preventDefault();
+    const currentTab = event.currentTarget.dataset.tab;
+    setTab(currentTab);
+  };
+
   return (
     <React.Fragment>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
           <li className={`movie-nav__item ${tab === Tab.OVERVIEW ? `movie-nav__item--active` : ``}`}>
-            <a href="#" className="movie-nav__link" onClick={onTabClick} data-tab={Tab.OVERVIEW}>
+            <a href="#" className="movie-nav__link" onClick={handleTabClick} data-tab={Tab.OVERVIEW}>
               {Tab.OVERVIEW}
             </a>
           </li>
           <li className={`movie-nav__item ${tab === Tab.DETAILS ? `movie-nav__item--active` : ``}`}>
-            <a href="#" className="movie-nav__link" onClick={onTabClick} data-tab={Tab.DETAILS}>
+            <a href="#" className="movie-nav__link" onClick={handleTabClick} data-tab={Tab.DETAILS}>
               {Tab.DETAILS}
             </a>
           </li>
           <li className={`movie-nav__item ${tab === Tab.REVIEWS ? `movie-nav__item--active` : ``}`}>
-            <a href="#" className="movie-nav__link" onClick={onTabClick} data-tab={Tab.REVIEWS}>
+            <a href="#" className="movie-nav__link" onClick={handleTabClick} data-tab={Tab.REVIEWS}>
               {Tab.REVIEWS}
             </a>
           </li>
@@ -59,8 +66,6 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   movie: moviePropTypes,
-  onTabClick: PropTypes.func.isRequired,
-  tab: PropTypes.string.isRequired,
   fetchCommentsAction: PropTypes.func.isRequired,
 };
 
@@ -74,4 +79,4 @@ const mapStateToProps = ({movies}) => ({
 
 
 export {Tabs};
-export default connect(mapStateToProps, mapDispatchToProps)(withTabState(Tabs));
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

@@ -3,19 +3,39 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import VideoPlayer from 'components/video-player/video-player';
 import {moviePropTypes} from 'store/prop-types';
-import withMovieCardState from 'hocs/with-movie-card-state';
 
 
 const MovieCard = (props) => {
-  const {movie, onMovieCardClick, onMouseEnter, onMouseLeave, isVideo, playVideo} = props;
+  const [isVideo, setIsVideo] = React.useState(false);
+
+  const {movie, onMovieCardClick} = props;
   const {title, preview, previewVideo, id} = movie;
+  let timeoutID = null;
+
+  const playVideo = (element) => {
+    if (element) {
+      timeoutID = setTimeout(() => element.play(), 1000);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setIsVideo(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsVideo(false);
+  };
+
+  React.useEffect(() => {
+    return () => clearTimeout(timeoutID);
+  });
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onClick={() => onMovieCardClick(id)}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
@@ -36,12 +56,7 @@ const MovieCard = (props) => {
 MovieCard.propTypes = {
   movie: moviePropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  playVideo: PropTypes.func.isRequired,
-  isVideo: PropTypes.bool.isRequired,
 };
 
 
-export {MovieCard};
-export default withMovieCardState(MovieCard);
+export default MovieCard;

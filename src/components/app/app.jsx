@@ -5,15 +5,15 @@ import Routing from 'components/routing/routing';
 import {init} from 'store/actions/async';
 
 
-class App extends React.PureComponent {
-  componentDidMount() {
-    this.props.initAction();
-  }
+const App = (props) => {
+  const {isApplicationReady, initAction} = props;
 
-  render() {
-    return this.props.isApplicationReady && <Routing />;
-  }
-}
+  React.useEffect(() => {
+    initAction();
+  }, [initAction]);
+
+  return isApplicationReady && <Routing />;
+};
 
 App.propTypes = {
   isApplicationReady: PropTypes.bool.isRequired,
