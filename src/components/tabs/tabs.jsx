@@ -73,4 +73,5 @@ const mapStateToProps = ({movies}) => ({
 });
 
 
+export {Tabs};
 export default connect(mapStateToProps, mapDispatchToProps)(withTabState(Tabs));

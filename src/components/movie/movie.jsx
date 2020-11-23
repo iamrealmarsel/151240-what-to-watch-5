@@ -103,4 +103,5 @@ const mapStateToProps = ({load}) => ({
 });
 
 
+export {Movie};
 export default connect(mapStateToProps)(Movie);

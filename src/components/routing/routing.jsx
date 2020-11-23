@@ -54,4 +54,5 @@ const mapStateToProps = ({user}) => ({
 });
 
 
+export {Routing};
 export default connect(mapStateToProps)(Routing);

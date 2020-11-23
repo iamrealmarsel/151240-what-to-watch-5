@@ -39,4 +39,5 @@ const mapStateToProps = ({load}) => ({
 });
 
 
+export {MyList};
 export default connect(mapStateToProps)(MyList);

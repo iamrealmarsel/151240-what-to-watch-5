@@ -63,4 +63,5 @@ const mapStateToProps = ({load}) => ({
 });
 
 
+export {Promo};
 export default connect(mapStateToProps)(Promo);
