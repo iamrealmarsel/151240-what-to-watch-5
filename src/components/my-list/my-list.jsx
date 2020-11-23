@@ -1,12 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import connect from 'components/my-list/my-list.connect';
 import PropTypes from 'prop-types';
 import MovieList from 'components/movie-list/movie-list';
 import Header from 'components/header/header';
 import {moviesPropTypes} from 'store/prop-types';
 import {Title} from 'const';
 import Footer from 'components/footer/footer';
-import {getMyList} from 'store/selector';
 
 
 const MyList = (props) => {
@@ -34,10 +33,6 @@ MyList.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({load}) => ({
-  movies: getMyList(load.movies),
-});
-
 
 export {MyList};
-export default connect(mapStateToProps)(MyList);
+export default connect(MyList);

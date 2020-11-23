@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {login} from 'store/actions/async';
+import connect from 'components/sign-in/sign-in.connect';
 import Header from 'components/header/header';
 import Footer from 'components/footer/footer';
 import {Title} from 'const';
@@ -55,10 +54,6 @@ SignIn.propTypes = {
   loginAction: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = {
-  loginAction: login,
-};
-
 
 export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(SignIn);

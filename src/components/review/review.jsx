@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import connect from 'components/review/review.connect';
 import RatingStars from 'components/rating-stars/rating-stars';
 import Header from 'components/header/header';
 import {checkTextValidation} from 'utils';
 import {moviesPropTypes} from 'store/prop-types';
 import {getMovieByID} from 'store/selector';
-import {postComment} from 'store/actions/async';
 import {SHAKE_ANIMATION_TIMEOUT} from 'const';
 
 
@@ -125,14 +124,6 @@ Review.propTypes = {
   match: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({load}) => ({
-  movies: load.movies,
-});
-
-const mapDispatchToProps = {
-  postCommentAction: postComment,
-};
-
 
 export {Review};
-export default connect(mapStateToProps, mapDispatchToProps)(Review);
+export default connect(Review);

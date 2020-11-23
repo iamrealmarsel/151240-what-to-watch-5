@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import connect from 'components/avatar/avatar.connect';
 import PropTypes from 'prop-types';
 
 
@@ -24,9 +24,6 @@ Avatar.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({user}) => ({
-  isAuthenticated: user.isAuthenticated,
-});
 
 export {Avatar};
-export default connect(mapStateToProps)(Avatar);
+export default connect(Avatar);

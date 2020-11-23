@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import connect from 'components/routing/routing.connect';
 import {Router, Switch, Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import browserHistory from 'browser-history';
@@ -49,10 +49,6 @@ Routing.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({user}) => ({
-  isAuthenticated: user.isAuthenticated,
-});
-
 
 export {Routing};
-export default connect(mapStateToProps)(Routing);
+export default connect(Routing);

@@ -1,8 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import connect from 'components/genre-list/genre-list.connect';
 import PropTypes from 'prop-types';
-import {changeGenre} from 'store/actions/movies';
-import {getGenres} from 'store/selector';
 
 
 const GenreList = (props) => {
@@ -42,15 +40,6 @@ GenreList.propTypes = {
   genres: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({movies, load}) => ({
-  currentGenre: movies.currentGenre,
-  genres: getGenres(load.movies),
-});
-
-const mapDispatchToProps = {
-  changeGenreAction: changeGenre,
-};
-
 
 export {GenreList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
+export default connect(GenreList);

@@ -1,12 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import connect from 'components/tabs/tabs.connect';
 import PropTypes from 'prop-types';
 import {moviePropTypes} from 'store/prop-types';
 import {Tab} from 'const';
 import TabsOverview from 'components/tabs-overview/tabs-overview';
 import TabsDetails from 'components/tabs-details/tabs-details';
 import TabsReviews from 'components/tabs-reviews/tabs-reviews';
-import {fetchComments} from 'store/actions/async';
 
 
 const Tabs = (props) => {
@@ -69,14 +68,6 @@ Tabs.propTypes = {
   fetchCommentsAction: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = {
-  fetchCommentsAction: fetchComments,
-};
-
-const mapStateToProps = ({movies}) => ({
-  commentsCheck: movies.commentsCheck,
-});
-
 
 export {Tabs};
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
+export default connect(Tabs);

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import Routing from 'components/routing/routing';
-import {init} from 'store/actions/async';
+import connect from 'components/app/app.connect';
 
 
 const App = (props) => {
@@ -20,14 +19,6 @@ App.propTypes = {
   initAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({movies}) => ({
-  isApplicationReady: movies.isApplicationReady,
-});
-
-const mapDispatchToProps = {
-  initAction: init,
-};
-
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(App);

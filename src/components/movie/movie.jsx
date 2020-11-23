@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import connect from 'components/movie/movie.connect';
 import MovieList from 'components/movie-list/movie-list';
 import Tabs from 'components/tabs/tabs';
 import Header from 'components/header/header';
@@ -98,10 +98,6 @@ Movie.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({load}) => ({
-  movies: load.movies,
-});
-
 
 export {Movie};
-export default connect(mapStateToProps)(Movie);
+export default connect(Movie);

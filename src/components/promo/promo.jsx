@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import connect from 'components/promo/promo.connect';
 import {moviePropTypes} from 'store/prop-types';
 import Header from 'components/header/header';
 import browserHistory from 'browser-history';
@@ -58,10 +58,6 @@ Promo.propTypes = {
   moviePromo: moviePropTypes,
 };
 
-const mapStateToProps = ({load}) => ({
-  moviePromo: load.moviePromo,
-});
-
 
 export {Promo};
-export default connect(mapStateToProps)(Promo);
+export default connect(Promo);
