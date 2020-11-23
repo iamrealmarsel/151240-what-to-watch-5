@@ -18,14 +18,8 @@ test(`add review`, () => {
         <BrowserRouter>
           <Review
             movies={mock.MOVIES}
-            ratingStarsChecks={mock.RATING_STARS}
-            onTextChange={handleTextChange}
-            onStarClick={mock.noop}
-            onSubmit={handleSubmit}
-            id={mock.ID}
-            disabledButton={true}
-            disabledTextArea={false}
-            errorShake={false}
+            postCommentAction={mock.noop}
+            match={mock.MATCH}
           />
         </BrowserRouter>
       </Provider>

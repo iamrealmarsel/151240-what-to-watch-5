@@ -19,6 +19,6 @@ it(`click to genre`, () => {
   );
 
   const link = wrapper.find(`.catalog__genres-link`).at(0);
-  link.simulate(`click`, {preventDefault: () => {}});
+  link.simulate(`click`, {preventDefault: mock.noop});
   expect(changeGenreAction).toHaveBeenCalledTimes(1);
 });
