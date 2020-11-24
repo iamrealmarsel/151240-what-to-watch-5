@@ -13,10 +13,10 @@ const Player = (props) => {
   const currentMovie = getMovieByID(movies, id);
   const {video, title} = currentMovie;
 
-  const videoRef = React.useRef(null);
   const [isPlaying, setIsPlaying] = React.useState(true);
   const [elapsedTime, setElapsedTime] = React.useState(null);
   const [togglerProgress, setTogglerProgress] = React.useState(0);
+  const videoRef = React.useRef(null);
 
   React.useEffect(() => {
     const videoElement = videoRef.current;

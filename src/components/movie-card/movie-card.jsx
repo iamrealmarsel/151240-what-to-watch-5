@@ -6,11 +6,15 @@ import {moviePropTypes} from 'store/prop-types';
 
 
 const MovieCard = (props) => {
-  const [isVideo, setIsVideo] = React.useState(false);
-
   const {movie, onMovieCardClick} = props;
   const {title, preview, previewVideo, id} = movie;
   let timeoutID = null;
+
+  const [isVideo, setIsVideo] = React.useState(false);
+
+  React.useEffect(() => {
+    return () => clearTimeout(timeoutID);
+  });
 
   const playVideo = (element) => {
     if (element) {
@@ -25,10 +29,6 @@ const MovieCard = (props) => {
   const handleMouseLeave = () => {
     setIsVideo(false);
   };
-
-  React.useEffect(() => {
-    return () => clearTimeout(timeoutID);
-  });
 
   return (
     <article

@@ -9,11 +9,11 @@ import TabsReviews from 'components/tabs-reviews/tabs-reviews';
 
 
 const Tabs = (props) => {
-  const [tab, setTab] = React.useState(Tab.OVERVIEW);
-
   const {movie, fetchCommentsAction} = props;
   const {id, comments} = movie;
   let tabContent = null;
+
+  const [tab, setTab] = React.useState(Tab.OVERVIEW);
 
   switch (tab) {
     case Tab.OVERVIEW:

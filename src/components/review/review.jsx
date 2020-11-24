@@ -20,14 +20,14 @@ const formDisabledState = {
 };
 
 const Review = (props) => {
-  const [formData, setData] = React.useState(formDataState);
-  const [formDisabled, setIsDisabled] = React.useState(formDisabledState);
-  const [errorShake, setIsError] = React.useState(false);
-
   const {movies, postCommentAction} = props;
   const id = Number(props.match.params.id);
   const currentMovie = getMovieByID(movies, id);
   const {title, background, poster} = currentMovie;
+
+  const [formData, setData] = React.useState(formDataState);
+  const [formDisabled, setIsDisabled] = React.useState(formDisabledState);
+  const [errorShake, setIsError] = React.useState(false);
 
   const handleStarClick = (checked, index) => {
     const newRatingStarsCheked = Array(5).fill(false);
