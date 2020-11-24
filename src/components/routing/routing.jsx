@@ -37,9 +37,7 @@ const Routing = (props) => {
           <Review match={match}/>
         )}
         />
-        <Route exact path='/player/:id'>
-          <Player />
-        </Route>
+        <Route exact path='/player/:id' render={({match}) => <Player params={match.params} />} />
       </Switch>
     </Router>
   );
