@@ -30,6 +30,18 @@ export const RatingText = {
   AWESOME: `Awesome`,
 };
 
+export const RatingRange = {
+  BAD_MIN: 0,
+  BAD_MAX: 2,
+  NORMAL_MIN: 3,
+  NORMAL_MAX: 4,
+  GOOD_MIN: 5,
+  GOOD_MAX: 7,
+  VERY_GOOD_MIN: 8,
+  VERY_GOOD_MAX: 9,
+  AWESOME: 10,
+};
+
 export const Title = {
   SIGN_IN: `Sign in`,
   MY_LIST: `My list`,

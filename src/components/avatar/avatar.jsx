@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import connect from 'components/avatar/avatar.connect';
-import PropTypes from 'prop-types';
 
 
 const Avatar = (props) => {
