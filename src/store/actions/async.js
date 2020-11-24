@@ -1,6 +1,6 @@
 import {loadMovies, loadMoviePromo, loadComments} from 'store/actions/load';
 import {enableApplication, displayСomments} from 'store/actions/movies';
-import {enableAuth} from 'store/actions/user';
+import {enableAuth, addAvatarLink} from 'store/actions/user';
 import browserHistory from 'browser-history';
 
 
@@ -56,6 +56,20 @@ const adaptCommentToClient = (comment) => {
   return adaptedComment;
 };
 
+const adaptAuthInfoToClient = (authInfo) => {
+  const adaptedAuthInfo = Object.assign(
+      {},
+      authInfo,
+      {
+        avatarLink: authInfo.avatar_url,
+      }
+  );
+
+  delete adaptedAuthInfo.avatar_url;
+
+  return adaptedAuthInfo;
+};
+
 const fetchMovies = (dispatch, axios) => {
   return axios.get(`/films`)
     .then(({data}) => {
@@ -76,7 +90,11 @@ const fetchMoviePromo = (dispatch, axios) => {
 
 const checkAuth = (dispatch, axios) => {
   return axios.get(`/login`)
-    .then(() => dispatch(enableAuth(true)))
+    .then(({data}) => {
+      const {avatarLink} = adaptAuthInfoToClient(data);
+      dispatch(addAvatarLink(avatarLink));
+      dispatch(enableAuth(true));
+    })
     .catch(() => {});
 };
 
@@ -92,7 +110,15 @@ export const init = () => (dispatch, _getState, axios) => {
 
 export const login = ({email, password}) => (dispatch, _getState, axios) => {
   return axios.post(`/login`, {email, password})
-    .then(() => dispatch(enableAuth(true)))
+    .then(({data}) => {
+      const {avatarLink} = adaptAuthInfoToClient(data);
+      dispatch(enableAuth(true));
+      dispatch(addAvatarLink(avatarLink));
+    })
+    .then(() => {
+      fetchMovies(dispatch, axios);
+      fetchMoviePromo(dispatch, axios);
+    })
     .then(() => browserHistory.push(`/`))
     .catch((err) => {
       throw err;
