@@ -91,10 +91,12 @@ export const init = () => (dispatch, _getState, axios) => {
 };
 
 export const login = ({email, password}) => (dispatch, _getState, axios) => {
-  axios.post(`/login`, {email, password})
+  return axios.post(`/login`, {email, password})
     .then(() => dispatch(enableAuth(true)))
     .then(() => browserHistory.push(`/`))
-    .catch(() => {});
+    .catch((err) => {
+      throw err;
+    });
 };
 
 export const fetchComments = (id) => (dispatch, _getState, axios) => {

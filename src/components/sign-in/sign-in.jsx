@@ -7,6 +7,8 @@ import {Title} from 'const';
 
 
 const SignIn = (props) => {
+  const [isError, setError] = React.useState(false);
+
   const mailRef = React.createRef();
   const passwordRef = React.createRef();
 
@@ -15,7 +17,8 @@ const SignIn = (props) => {
     props.loginAction({
       email: mailRef.current.value,
       password: passwordRef.current.value,
-    });
+    })
+    .catch((err) => setError(err.toString()));
   };
 
   return (
@@ -26,6 +29,12 @@ const SignIn = (props) => {
       <div className="sign-in user-page__content">
         <form onSubmit={handleSubmit}
           action="" className="sign-in__form">
+          {
+            isError &&
+            <div className="sign-in__message">
+              <p>{isError}</p>
+            </div>
+          }
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input ref={mailRef}
