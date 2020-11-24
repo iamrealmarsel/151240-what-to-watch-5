@@ -118,3 +118,10 @@ export const postComment = (rating, text, id) => (dispatch, _getState, axios) =>
     });
 };
 
+export const changeMyList = (id, status) => (dispatch, _getState, axios) => {
+  axios.post(`/favorite/${id}/${status}`)
+    .then(() => fetchMovies(dispatch, axios))
+    .then(() => fetchMoviePromo(dispatch, axios))
+    .catch(() => {});
+};
+

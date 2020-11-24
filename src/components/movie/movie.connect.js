@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
 
 
-const mapStateToProps = ({load}) => ({
+const mapStateToProps = ({load, user}) => ({
   movies: load.movies,
+  isAuthenticated: user.isAuthenticated,
 });
 
 
