@@ -3,7 +3,7 @@ import {ActionType} from 'const';
 
 const initialState = {
   isAuthenticated: false,
-  avatar: null,
+  avatar: ``,
 };
 
 const user = (state = initialState, action) => {

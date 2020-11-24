@@ -13,7 +13,7 @@ it(`click to genre`, () => {
   const wrapper = shallow(
       <GenreList
         changeGenreAction={changeGenreAction}
-        currentGenre={mock.CURRENT_GENRE}
+        currentGenre={mock.ALL_GENRES}
         genres={mock.GENRES}
       />
   );

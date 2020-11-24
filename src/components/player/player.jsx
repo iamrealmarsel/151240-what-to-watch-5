@@ -113,4 +113,5 @@ Player.propTypes = {
 };
 
 
+export {Player};
 export default connect(Player);

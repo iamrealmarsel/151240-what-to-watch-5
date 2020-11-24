@@ -13,6 +13,7 @@ test(`render Promo`, () => {
           <BrowserRouter>
             <Promo
               moviePromo={mock.MOVIE}
+              isAuthenticated={false}
             />
           </BrowserRouter>
         </Provider>

@@ -205,6 +205,7 @@ exports[`render Review 1`] = `
           name="review-text"
           onChange={[Function]}
           placeholder="Review text"
+          value=""
         />
         <div
           className="add-review__submit"

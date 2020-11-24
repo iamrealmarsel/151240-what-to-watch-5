@@ -42,4 +42,5 @@ MyListButton.propTypes = {
 };
 
 
+export {MyListButton};
 export default connect(MyListButton);
