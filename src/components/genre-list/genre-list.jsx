@@ -6,8 +6,10 @@ import PropTypes from 'prop-types';
 const GenreList = (props) => {
   const {currentGenre, genres, changeGenreAction} = props;
 
-  const handleGenreClick = (event, genre) => {
-    event.preventDefault();
+  const handleGenreClick = (genre) => {
+    if (genre === currentGenre) {
+      return;
+    }
     changeGenreAction(genre);
   };
 
@@ -24,7 +26,10 @@ const GenreList = (props) => {
           }
         >
           <a href="#" className="catalog__genres-link"
-            onClick={(event) => handleGenreClick(event, genre)}
+            onClick={(event) => {
+              event.preventDefault();
+              handleGenreClick(genre);
+            }}
           >
             {genre}
           </a>
