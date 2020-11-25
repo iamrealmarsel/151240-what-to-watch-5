@@ -1,21 +1,78 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import connect from 'components/review/review.connect';
 import RatingStars from 'components/rating-stars/rating-stars';
 import Header from 'components/header/header';
-import {generateId} from 'utils.js';
+import {isSmallAmountOfText, isTextLimitExceeded} from 'utils';
 import {moviesPropTypes} from 'store/prop-types';
-import withReviewState from 'hocs/with-review-state';
 import {getMovieByID} from 'store/selector';
+import {SHAKE_ANIMATION_TIMEOUT} from 'const';
 
+
+const formDataState = {
+  ratingStarsChecks: [false, false, true, false, false],
+  text: ``,
+};
+
+const formDisabledState = {
+  postButton: true,
+  textArea: false,
+};
 
 const Review = (props) => {
-  const {
-    ratingStarsChecks, onTextChange, onSubmit, onStarClick,
-    movies, id, disabledButton, disabledTextArea, errorShake
-  } = props;
+  const {movies, postCommentAction} = props;
+  const id = Number(props.match.params.id);
   const currentMovie = getMovieByID(movies, id);
   const {title, background, poster} = currentMovie;
+
+  const [formData, setData] = React.useState(formDataState);
+  const [formDisabled, setIsDisabled] = React.useState(formDisabledState);
+  const [errorShake, setIsError] = React.useState(false);
+
+  const handleStarClick = (checked, index) => {
+    const newRatingStarsCheked = Array(5).fill(false);
+    newRatingStarsCheked[index] = checked;
+    setData((prevState) => Object.assign({}, prevState, {ratingStarsChecks: newRatingStarsCheked}));
+  };
+
+  const handleTextChange = (text) => {
+    if (isTextLimitExceeded(text)) {
+      return;
+    }
+    setData((prevState) => Object.assign({}, prevState, {text}));
+    setIsDisabled((prevState) => Object.assign({}, prevState, {postButton: isSmallAmountOfText(text)}));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const rating = formData.ratingStarsChecks.indexOf(true) + 1;
+    const text = formData.text;
+
+    setIsDisabled((prevState) => Object.assign({}, prevState, {
+      postButton: true,
+      textArea: true,
+    }));
+
+    postCommentAction(rating, text, id)
+      .then(() => {
+        setIsDisabled((prevState) => Object.assign({}, prevState, {
+          postButton: false,
+          textArea: false,
+        }));
+      })
+      .catch(() => {
+        setIsDisabled((prevState) => Object.assign({}, prevState, {
+          postButton: false,
+          textArea: false,
+        }));
+        reportError();
+      });
+  };
+
+  const reportError = () => {
+    setIsError(true);
+    setTimeout(() => setIsError(false), SHAKE_ANIMATION_TIMEOUT);
+  };
 
   return (
     <section className="movie-card movie-card--full">
@@ -34,26 +91,31 @@ const Review = (props) => {
       </div>
 
       <div className="add-review">
-        <form action="" className={`add-review__form ${errorShake ? `shake` : ``} `} onSubmit={onSubmit} >
+        <form action="" className={`add-review__form ${errorShake ? `shake` : ``} `} onSubmit={handleSubmit} >
           <div className="rating">
             <div className="rating__stars">
-              {ratingStarsChecks.map((starCheck, index) => (
+              {formData.ratingStarsChecks.map((starCheck, index) => (
                 <RatingStars
-                  key={generateId()}
+                  key={index}
                   index={index}
                   starCheck={starCheck}
-                  onStarClick={(checked) => onStarClick(checked, index)} />
+                  onStarClick={(checked) => handleStarClick(checked, index)} />
               ))}
             </div>
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
-              onChange={(event) => onTextChange(event.target.value)}
-              disabled={disabledTextArea} >
+            <textarea
+              className="add-review__textarea"
+              name="review-text" id="review-text"
+              placeholder="Review text"
+              onChange={(event) => handleTextChange(event.target.value)}
+              disabled={formDisabled.textArea}
+              value={formData.text}
+            >
             </textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit" disabled={disabledButton} >Post</button>
+              <button className="add-review__btn" type="submit" disabled={formDisabled.postButton} >Post</button>
             </div>
 
           </div>
@@ -66,20 +128,10 @@ const Review = (props) => {
 
 Review.propTypes = {
   movies: moviesPropTypes,
-  ratingStarsChecks: PropTypes.array.isRequired,
-  onTextChange: PropTypes.func.isRequired,
-  onStarClick: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  disabledButton: PropTypes.bool.isRequired,
-  disabledTextArea: PropTypes.bool.isRequired,
-  errorShake: PropTypes.bool.isRequired,
+  postCommentAction: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
 };
-
-const mapStateToProps = ({load}) => ({
-  movies: load.movies,
-});
 
 
 export {Review};
-export default connect(mapStateToProps)(withReviewState(Review));
+export default connect(Review);

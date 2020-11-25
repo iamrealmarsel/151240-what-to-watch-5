@@ -3,6 +3,7 @@ import {ActionType} from 'const';
 
 const initialState = {
   isAuthenticated: false,
+  avatar: ``,
 };
 
 const user = (state = initialState, action) => {
@@ -13,6 +14,14 @@ const user = (state = initialState, action) => {
           state,
           {
             isAuthenticated: action.status,
+          });
+
+    case ActionType.ADD_AVATAR_LINK:
+      return Object.assign(
+          {},
+          state,
+          {
+            avatar: action.link,
           });
   }
 

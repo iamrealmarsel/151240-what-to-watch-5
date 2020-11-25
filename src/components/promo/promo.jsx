@@ -1,12 +1,15 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import connect from 'components/promo/promo.connect';
 import {moviePropTypes} from 'store/prop-types';
 import Header from 'components/header/header';
+import MyListButton from 'components/my-list-button/my-list-button';
 import browserHistory from 'browser-history';
 
 
 const Promo = (props) => {
-  const {title, genre, releaseYear, background, poster, id} = props.moviePromo;
+  const {moviePromo, isAuthenticated} = props;
+  const {title, genre, releaseYear, background, poster, id} = moviePromo;
 
   const handleButtonPlayClick = () => {
     browserHistory.push(`/player/${id}`);
@@ -34,18 +37,16 @@ const Promo = (props) => {
             </p>
 
             <div className="movie-card__buttons">
+
               <button onClick={handleButtonPlayClick} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+
+              {isAuthenticated && <MyListButton movie={moviePromo} />}
+
             </div>
           </div>
         </div>
@@ -56,12 +57,9 @@ const Promo = (props) => {
 
 Promo.propTypes = {
   moviePromo: moviePropTypes,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
-
-const mapStateToProps = ({load}) => ({
-  moviePromo: load.moviePromo,
-});
 
 
 export {Promo};
-export default connect(mapStateToProps)(Promo);
+export default connect(Promo);

@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import ShowMoreButton from 'components/show-more-button/show-more-button';
 import MovieList from 'components/movie-list/movie-list';
 import {MOVIE_COUNT_STEP} from 'const';
 import {moviesPropTypes} from 'store/prop-types';
-import {getMoviesByGenre, getVisibleMovies, isEnableShowMoreButton} from 'store/selector';
-import {showMoreMovies} from 'store/actions/movies';
+import {getVisibleMovies, isEnableShowMoreButton} from 'store/selector';
+import connect from 'components/movie-list-container/movie-list-container.connect';
 
 
 const MovieListContainer = (props) => {
@@ -33,15 +32,6 @@ MovieListContainer.propTypes = {
   showMoreMoviesAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({load, movies}) => ({
-  visibleMoviesCount: movies.visibleMoviesCount,
-  movies: getMoviesByGenre(load.movies, movies.currentGenre),
-});
-
-const mapDispatchToProps = {
-  showMoreMoviesAction: showMoreMovies,
-};
-
 
 export {MovieListContainer};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieListContainer);
+export default connect(MovieListContainer);

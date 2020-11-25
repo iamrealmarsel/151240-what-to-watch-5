@@ -1,17 +1,17 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import connect from 'components/avatar/avatar.connect';
 
 
 const Avatar = (props) => {
-  const {isAuthenticated} = props;
+  const {isAuthenticated, avatarLink} = props;
 
   return (
     <div className="user-block">
       { isAuthenticated
         ? <div className="user-block__avatar">
-          <Link to="/mylist"><img src="img/avatar.jpg" alt="User avatar" width="63" height="63" /></Link>
+          <Link to="/mylist"><img src={avatarLink} alt="User avatar" width="63" height="63" /></Link>
         </div>
 
         : <Link to="/login" className="user-block__link">Sign in</Link>
@@ -22,11 +22,9 @@ const Avatar = (props) => {
 
 Avatar.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  avatarLink: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({user}) => ({
-  isAuthenticated: user.isAuthenticated,
-});
 
 export {Avatar};
-export default connect(mapStateToProps)(Avatar);
+export default connect(Avatar);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import connect from 'components/movie/movie.connect';
 import MovieList from 'components/movie-list/movie-list';
 import Tabs from 'components/tabs/tabs';
 import Header from 'components/header/header';
@@ -9,10 +9,11 @@ import {moviesPropTypes} from 'store/prop-types';
 import {getAlikeMovies, getMovieByID} from 'store/selector';
 import Footer from 'components/footer/footer';
 import browserHistory from 'browser-history';
+import MyListButton from 'components/my-list-button/my-list-button';
 
 
 const Movie = (props) => {
-  const {movies, onMovieCardClick, match} = props;
+  const {movies, onMovieCardClick, match, isAuthenticated} = props;
   const id = Number(match.params.id);
   const currentMovie = getMovieByID(movies, id);
   const alikeMovies = getAlikeMovies(movies, currentMovie);
@@ -49,13 +50,10 @@ const Movie = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <Link className="btn movie-card__button" to={`/films/${id}/review`}>Add review</Link>
+
+                {isAuthenticated && <MyListButton movie={currentMovie} />}
+                {isAuthenticated && <Link className="btn movie-card__button" to={`/films/${id}/review`}>Add review</Link>}
+
               </div>
             </div>
           </div>
@@ -96,12 +94,9 @@ Movie.propTypes = {
   movies: moviesPropTypes,
   onMovieCardClick: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
-
-const mapStateToProps = ({load}) => ({
-  movies: load.movies,
-});
 
 
 export {Movie};
-export default connect(mapStateToProps)(Movie);
+export default connect(Movie);

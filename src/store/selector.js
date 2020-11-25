@@ -1,6 +1,8 @@
-import {ALL_GENRES, ALIKE_MOVIE_COUNT, RatingText} from 'const';
+import {ALL_GENRES, ALIKE_MOVIE_COUNT, RatingText, RatingRange} from 'const';
 import moment from 'moment';
 
+
+const TOGGLER_PROGRESS_PERCENT_MAX = 100;
 
 export const getMoviesByGenre = (movies, genre) => {
   if (genre === ALL_GENRES) {
@@ -49,23 +51,19 @@ export const convertMinutesToHoursAndMinutes = (totalMinutes) => {
 };
 
 export const convertRatingToText = (rating) => {
-  if (rating >= 0 && rating < 3) {
+  if (rating >= RatingRange.BAD_MIN && rating <= RatingRange.BAD_MAX) {
     return RatingText.BAD;
   }
-
-  if (rating >= 3 && rating < 5) {
+  if (rating >= RatingRange.NORMAL_MIN && rating <= RatingRange.NORMAL_MAX) {
     return RatingText.NORMAL;
   }
-
-  if (rating >= 5 && rating < 8) {
+  if (rating >= RatingRange.GOOD_MIN && rating <= RatingRange.GOOD_MAX) {
     return RatingText.GOOD;
   }
-
-  if (rating >= 8 && rating < 10) {
+  if (rating >= RatingRange.VERY_GOOD_MIN && rating <= RatingRange.VERY_GOOD_MAX) {
     return RatingText.VERY_GOOD;
   }
-
-  if (rating === 10) {
+  if (rating === RatingRange.AWESOME) {
     return RatingText.AWESOME;
   }
 
@@ -84,3 +82,17 @@ export const formatDate = (date) => {
   return moment(date).format(`MMMM D, YYYY`);
 };
 
+export const getTogglerProgress = (currentTime, duration) => {
+  const togglerProgress = Math.ceil(TOGGLER_PROGRESS_PERCENT_MAX * currentTime / duration);
+  return togglerProgress;
+};
+
+export const getElapsedTime = (currentTime, duration) => {
+  const totalSeconds = Math.ceil(duration - currentTime);
+  const seconds = totalSeconds % 60;
+  const totalMinutes = (totalSeconds - seconds) / 60;
+  const minutes = totalMinutes % 60;
+  const hours = (totalMinutes - minutes) / 60;
+
+  return `${hours}:${minutes}:${seconds}`;
+};

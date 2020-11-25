@@ -6,7 +6,7 @@ import ShowMoreButton from "./show-more-button";
 
 configure({adapter: new Adapter()});
 
-test(`render ShowMoreButton`, () => {
+test(`click on show more button`, () => {
   const handleClick = jest.fn();
 
   const wrapper = shallow(

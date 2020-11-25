@@ -1,5 +1,7 @@
-export const generateId = () => Math.round(Date.now() * Math.random());
+export const isSmallAmountOfText = (text) => {
+  return text.length < 50;
+};
 
-export const checkTextValidation = (text) => {
-  return !(text.length >= 50 && text.length <= 400);
+export const isTextLimitExceeded = (text) => {
+  return text.length > 400;
 };

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {login} from 'store/actions/async';
+import connect from 'components/sign-in/sign-in.connect';
 import Header from 'components/header/header';
 import Footer from 'components/footer/footer';
 import {Title} from 'const';
 
 
 const SignIn = (props) => {
+  const [isError, setError] = React.useState(false);
+
   const mailRef = React.createRef();
   const passwordRef = React.createRef();
 
@@ -16,7 +17,8 @@ const SignIn = (props) => {
     props.loginAction({
       email: mailRef.current.value,
       password: passwordRef.current.value,
-    });
+    })
+    .catch((err) => setError(err.toString()));
   };
 
   return (
@@ -27,6 +29,12 @@ const SignIn = (props) => {
       <div className="sign-in user-page__content">
         <form onSubmit={handleSubmit}
           action="" className="sign-in__form">
+          {
+            isError &&
+            <div className="sign-in__message">
+              <p>{isError}</p>
+            </div>
+          }
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input ref={mailRef}
@@ -55,10 +63,6 @@ SignIn.propTypes = {
   loginAction: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = {
-  loginAction: login,
-};
-
 
 export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(SignIn);

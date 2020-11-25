@@ -13,12 +13,12 @@ it(`click to genre`, () => {
   const wrapper = shallow(
       <GenreList
         changeGenreAction={changeGenreAction}
-        currentGenre={mock.CURRENT_GENRE}
+        currentGenre={mock.ALL_GENRES}
         genres={mock.GENRES}
       />
   );
 
   const link = wrapper.find(`.catalog__genres-link`).at(0);
-  link.simulate(`click`, {preventDefault: () => {}});
+  link.simulate(`click`, {preventDefault: mock.noop});
   expect(changeGenreAction).toHaveBeenCalledTimes(1);
 });

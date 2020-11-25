@@ -15,6 +15,7 @@ test(`render Movie`, () => {
               movies={mock.MOVIES}
               match={mock.MATCH}
               onMovieCardClick={mock.noop}
+              isAuthenticated={false}
             />
           </BrowserRouter>
         </Provider>

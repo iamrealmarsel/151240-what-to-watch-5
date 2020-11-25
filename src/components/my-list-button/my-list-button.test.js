@@ -1,15 +1,15 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
-import {Player} from "./player";
+import {MyListButton} from "./my-list-button";
 import * as mock from "test-mock";
 
 
-test(`render Player`, () => {
+test(`render MyListButton`, () => {
   const tree = TestRenderer
     .create(
-        <Player
-          movies={mock.MOVIES}
-          params={mock.PARAMS}
+        <MyListButton
+          changeMyListAction={mock.noop}
+          movie={mock.MOVIE}
         />
     )
     .toJSON();

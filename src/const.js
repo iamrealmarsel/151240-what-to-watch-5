@@ -9,6 +9,7 @@ export const ActionType = {
   ENABLE_AUTH: `ENABLE_AUTH`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   DISPLAY_СOMMENTS: `DISPLAY_СOMMENTS`,
+  ADD_AVATAR_LINK: `ADD_AVATAR_LINK`,
 };
 
 export const MOVIE_COUNT_STEP = 8;
@@ -27,6 +28,18 @@ export const RatingText = {
   GOOD: `Good`,
   VERY_GOOD: `Very good`,
   AWESOME: `Awesome`,
+};
+
+export const RatingRange = {
+  BAD_MIN: 0,
+  BAD_MAX: 2,
+  NORMAL_MIN: 3,
+  NORMAL_MAX: 4,
+  GOOD_MIN: 5,
+  GOOD_MAX: 7,
+  VERY_GOOD_MIN: 8,
+  VERY_GOOD_MAX: 9,
+  AWESOME: 10,
 };
 
 export const Title = {
