@@ -1,3 +1,4 @@
+// export const basename = `.`;
 export const basename = `/151240-what-to-watch-5/public`;
 
 export const ALL_GENRES = `All genres`;

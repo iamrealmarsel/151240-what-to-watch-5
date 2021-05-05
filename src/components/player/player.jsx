@@ -5,6 +5,7 @@ import { getMovieByID } from "store/selector";
 import connect from "components/player/player.connect";
 import browserHistory from "browser-history";
 import { getElapsedTime, getTogglerProgress } from "store/selector";
+import { basename } from "../../const";
 
 const Player = (props) => {
   const { movies, params } = props;
@@ -59,7 +60,7 @@ const Player = (props) => {
       <video
         src={video}
         className="player__video"
-        poster="/img/player-poster.jpg"
+        poster={`${basename}/img/player-poster.jpg`}
         autoPlay
         ref={videoRef}
       ></video>
