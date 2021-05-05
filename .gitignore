@@ -14,5 +14,5 @@ checkpoint.md
 test.js
 
 # Собранные бандлы
-public/bundle.js
-public/bundle.js.map
+# public/bundle.js
+# public/bundle.js.map
